@@ -25,6 +25,7 @@ yarn-error.log*
 /public/css
 /public/fonts
 /public/img
+/src/Pages/img
 /public/js
 /public/sass
 /public/source

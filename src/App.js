@@ -1,12 +1,20 @@
-import Products from "./Pages/Products/Products";
-import Header from "./Shared/Header/header";
-import Footer from "./Shared/Footer/footer";
+import Header from "./Pages/Header/header";
+import Footer from "./Pages/Footer/footer";
+import CategoriesSection from "./Pages/CategoriesSection/CategoriesSection";
+import ProductsList from "./Shared/ProductsList/Card";
+import ServicesSection from "./Pages/ServicesSection/CategoriesSection";
+
 
 function App() {
+  
+
   return (
     <>
-      <Header></Header>
-      <Footer></Footer>
+      <Header />
+      <CategoriesSection />
+      <ProductsList />
+      <ServicesSection />
+      <Footer />
     </>
   );
 }
