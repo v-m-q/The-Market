@@ -1,5 +1,17 @@
+import { addProductToCart } from "../../APIs/add_to_cart";
+
 export default function Card({product}) {
   const base_URL = 'http://127.0.0.1:8000'
+  
+  function addToCart(e, id) {
+    e.preventDefault();
+    addProductToCart(id)
+      .then(() => {
+        alert('Added to cart successfully')
+      })
+      .catch((err) => console.log(err.message));
+  }
+
   return (
     
     <>
@@ -23,7 +35,7 @@ export default function Card({product}) {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="#" onClick={(e) => addToCart(e, product.product_id)}>
                         <span class="icon_bag_alt"></span>
                       </a>
                     </li>
