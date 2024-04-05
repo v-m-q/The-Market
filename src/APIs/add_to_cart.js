@@ -8,7 +8,18 @@ export const addProductToCart = (p_id) => {
       {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer Your-Token'
+            'Authorization': 'Bearer Token'
+          }
+        }
+      );
+    };
+    
+    export const getCartData = () => {
+      return axiosInstance.get("/cart/", 
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer Token'
         }
       }
   );

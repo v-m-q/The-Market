@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -16,13 +17,12 @@ export default function Header() {
           <li>
             <a href="#">
               <span class="icon_heart_alt"></span>
-              <div class="tip">2</div>
+              <div class="tip">29</div>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="./cart.html">
               <span class="icon_bag_alt"></span>
-              <div class="tip">2</div>
             </a>
           </li>
         </ul>
@@ -52,7 +52,7 @@ export default function Header() {
               <nav class="header__menu">
                 <ul>
                   <li class="active">
-                    <a href="./index.html">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li>
                     <a href="#">Women’s</a>
@@ -106,9 +106,9 @@ export default function Header() {
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="cart">
                       <span class="icon_bag_alt"></span>
-                      <div class="tip">2</div>
+                      <div class="tip">1</div>
                     </a>
                   </li>
                 </ul>
