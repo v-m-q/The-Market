@@ -1,4 +1,5 @@
 export default function Card({product}) {
+  const base_URL = 'http://127.0.0.1:8000'
   return (
     
     <>
@@ -6,8 +7,9 @@ export default function Card({product}) {
               <div class="product__item">
                 <div
                   class="product__item__pic set-bg"
-                  data-setbg="img/product/product-1.jpg"
+                  style={{'background-image': `url(${base_URL}/${product.thumbnail})`}}
                 >
+                  
                   <div class="label new">New</div>
                   <ul class="product__hover">
                     <li>
