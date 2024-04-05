@@ -1,46 +1,65 @@
-import { addProductToCart } from "../../APIs/add_to_cart";
+import { updateCartProductQuantity } from "../../APIs/cart";
+import { useState } from "react";
 
 export default function CartItem({ cartData }) {
   const base_URL = "http://127.0.0.1:8000";
 
-  function addToCart(e, id) {
-    e.preventDefault();
-    addProductToCart(id)
-      .then(() => {
-        alert("Added to cart successfully");
-      })
-      .catch((err) => console.log(err.message));
-  }
+  const [quantity, setQuantity] = useState(cartData.quantity); // Initial quantity state
+
+  const handleQuantityChange = (event) => {
+    setQuantity(parseInt(event.target.value));
+  };
+
+  const updateQuantity = (e, cartItemId) => {
+    console.log("Quantity:", quantity);
+    console.log("Cart Item ID:", cartItemId);
+      e.preventDefault();
+      updateCartProductQuantity(cartItemId, quantity)
+        .then(() => {
+          alert("Updated to cart successfully");
+        })
+        .catch((err) => alert("error: Quantity is more than available"));
+  };
 
   return (
     <>
       <tr>
-        <td class="cart__product__item">
+        <td className="cart__product__item">
           <img 
           src={`${base_URL}/${cartData.product.thumbnail}`} 
           width={'140px'} 
           style={{'border-radius': '15px' }}
           alt="" />
-          <div class="cart__product__item__title">
+          <div className="cart__product__item__title">
             <h6>{cartData.product.name}</h6>
-            <div class="rating">
-              {/* <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i> */}
+            <div className="rating">
+              {/* <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i> */}
             </div>
           </div>
         </td>
-        <td class="cart__price">$ {cartData.product.price}</td>
-        <td class="cart__quantity">
-          <div class="pro-qty">
-            <input type="text" value="1" />
+        <td className="cart__price">$ {cartData.product.price}</td>
+        <td className="">
+          <div>
+            <input type="number" style={{'width': '3em'}} min={1} max={50} onChange={handleQuantityChange} />
           </div>
         </td>
-        <td class="cart__total">$ 300.0</td>
-        <td class="cart__close">
-          <span class="icon_close"></span>
+            <td>
+              <button type="button" class="btn btn-success" onClick={(e) => updateQuantity(e, cartData.cartitem_id)} style={{'margin': '8px'}}>Apply</button>
+            </td>
+
+        <td className="">
+          <div>
+            <input type="number" readOnly style={{'width': '4em'}} value={quantity}/>
+          </div>
+        </td>
+
+        <td className="cart__total">$ 300.0</td>
+        <td className="cart__close">
+          <span className="icon_close"></span>
         </td>
       </tr>
     </>

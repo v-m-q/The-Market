@@ -1,4 +1,4 @@
-import { addProductToCart } from "../../APIs/add_to_cart";
+import { addProductToCart } from "../../APIs/cart";
 
 export default function Card({product}) {
   const base_URL = 'http://127.0.0.1:8000'

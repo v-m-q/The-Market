@@ -1,4 +1,4 @@
-import { getCartData } from "../../APIs/add_to_cart";
+import { getCartData } from "../../APIs/cart";
 import { useState, useEffect } from "react";
 import CartItem from "../../Shared/CartItem/CartItem";
 
@@ -43,6 +43,8 @@ export default function ShoppingCart() {
                     <tr>
                       <th>Product</th>
                       <th>Price</th>
+                      <th>Ch Quantity</th>
+                      <th>Apply</th>
                       <th>Quantity</th>
                       <th>Total</th>
                       <th></th>
