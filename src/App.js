@@ -9,7 +9,7 @@ import Payment from "./Pages/Payment/payment";
 
 function App() {
 
-  localStorage.setItem('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNDE3NzM4LCJpYXQiOjE3MTI0MTQxMzgsImp0aSI6IjE0YmVlZGQwZDMwMjQ1OGI5YTEwNGViMWNlYmJiNWE1IiwidXNlcl9pZCI6MSwiZW1haWwiOiJhaG1laWlkQG1oYWl5eWwuY29tIn0.yyv-CaIzct9JTdyGSzGNMiZ61e0Kl5E5dUYK8cb3kyM');
+  localStorage.setItem('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNDIxNDI2LCJpYXQiOjE3MTI0MTc4MjYsImp0aSI6IjcxNzEzMWEzM2U4NjRmOWE5MWM1OTA4Nzk1OWNmNzhjIiwidXNlcl9pZCI6MSwiZW1haWwiOiJhaG1laWlkQG1oYWl5eWwuY29tIn0.IdZtwHkdxRNyXe1kQKLm6vQSGmX2ke0n9OZ-yOOh3b4');
   
   let Component;
 

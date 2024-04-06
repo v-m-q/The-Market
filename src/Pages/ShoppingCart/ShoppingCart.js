@@ -4,18 +4,36 @@ import CartItem from "../../Shared/CartItem/CartItem";
 import { stripeCheckout } from "../../APIs/payment";
 
 export default function ShoppingCart() {
-
+  
+  
   const [cartProducts, setCartProducts] = useState([]);
-
+  
+  
+  let tp = 0;
+  const [totalPrice, setTotalprice] = useState(tp);
+  
   useEffect(() => {
     getCartData()
-      .then((data) => {
-        setCartProducts(data.data.cartitem_set);
-        console.log(data);
+    .then((data) => {
+      
+      console.log(data);
+      setCartProducts(data.data.cartitem_set);
+      
+      if (cartProducts !== null) {
+        prepareTotalPrice();
+      }
+      
+      
       })
       .catch((err) => console.log(err.message));
-  }, []);
-
+    }, [cartProducts]);
+    
+    const prepareTotalPrice = () => {
+        for (let i = 0; i < cartProducts.length; i++) {
+          tp += cartProducts[i].quantity * cartProducts[i].product.price;
+        }
+        setTotalprice(tp);
+    }
 
   const forwardToStripe = (e) => {
     e.preventDefault();
@@ -105,7 +123,7 @@ export default function ShoppingCart() {
                 <h6>Cart total</h6>
                 <ul>
                   <li>
-                    Total <span>$ 750.0</span>
+                    Total <span>$ {totalPrice}</span>
                   </li>
                 </ul>
                 <a href="#" class="primary-btn" onClick={ (e) => forwardToStripe(e) }>
