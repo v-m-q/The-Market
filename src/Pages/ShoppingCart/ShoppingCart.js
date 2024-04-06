@@ -1,6 +1,7 @@
 import { getCartData } from "../../APIs/cart";
 import { useState, useEffect } from "react";
 import CartItem from "../../Shared/CartItem/CartItem";
+import { stripeCheckout } from "../../APIs/payment";
 
 export default function ShoppingCart() {
 
@@ -15,6 +16,16 @@ export default function ShoppingCart() {
       .catch((err) => console.log(err.message));
   }, []);
 
+
+  const forwardToStripe = (e) => {
+    e.preventDefault();
+    stripeCheckout()
+    .then((response) => {
+      // redirect to stripe checkout page.
+      window.location.href = response.data.payload;
+    })
+    .catch((err) => alert("error: something wrong happened"));
+  }
 
   return (
     <>
@@ -98,7 +109,7 @@ export default function ShoppingCart() {
                     Total <span>$ 750.0</span>
                   </li>
                 </ul>
-                <a href="#" class="primary-btn">
+                <a href="#" class="primary-btn" onClick={ (e) => forwardToStripe(e) }>
                   Proceed to checkout
                 </a>
               </div>

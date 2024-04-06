@@ -9,7 +9,7 @@ export default function Card({product}) {
       .then(() => {
         alert('Added to cart successfully')
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => alert('Auth error : --'));
   }
 
   return (
