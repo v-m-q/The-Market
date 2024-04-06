@@ -24,9 +24,6 @@ export default function CartItem({ cartData, chg, data }) {
   const updateQuantity = (e, cartItemId) => {
     e.preventDefault();
     
-    // ch_cart_tp(cart_price+cartData.product.price*quantity)
-    console.log(cartData.product.price*quantity);
-
     updateCartProductQuantity(cartItemId, quantity)
     .then(() => {
           alert("Updated to cart successfully");

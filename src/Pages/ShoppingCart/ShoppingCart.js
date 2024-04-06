@@ -4,48 +4,40 @@ import CartItem from "../../Shared/CartItem/CartItem";
 import { stripeCheckout } from "../../APIs/payment";
 
 export default function ShoppingCart() {
-  
-  
   const [cartProducts, setCartProducts] = useState([]);
-  
-  
+
   let tp = 0;
   const [totalPrice, setTotalprice] = useState(tp);
-  
+
   useEffect(() => {
     getCartData()
-    .then((data) => {
-      
-      console.log(data);
-      setCartProducts(data.data.cartitem_set);
-      
-      if (cartProducts !== null) {
-        prepareTotalPrice();
-      }
-      
-      
+      .then((data) => {
+        setCartProducts(data.data.cartitem_set);
+
+        if (cartProducts !== null) {
+          prepareTotalPrice();
+        }
+
       })
       .catch((err) => console.log(err.message));
-    }, [cartProducts]);
-    
-    const prepareTotalPrice = () => {
-        for (let i = 0; i < cartProducts.length; i++) {
-          tp += cartProducts[i].quantity * cartProducts[i].product.price;
-        }
-        setTotalprice(tp);
+  }, [cartProducts]);
+
+  const prepareTotalPrice = () => {
+    for (let i = 0; i < cartProducts.length; i++) {
+      tp += cartProducts[i].quantity * cartProducts[i].product.price;
     }
+    setTotalprice(tp);
+  };
 
   const forwardToStripe = (e) => {
     e.preventDefault();
-    stripeCheckout(464)
-    .then((response) => {
-
-      // redirect to stripe checkout page.
-      window.location.href = response.data.payload;
-
-    })
-    .catch((err) => alert("error: something wrong happened"));
-  }
+    stripeCheckout(totalPrice)
+      .then((response) => {
+        // redirect to stripe checkout page.
+        window.location.href = response.data.payload;
+      })
+      .catch((err) => alert("error: something wrong happened"));
+  };
 
   return (
     <>
@@ -82,11 +74,13 @@ export default function ShoppingCart() {
                     </tr>
                   </thead>
                   <tbody>
-
-                    {cartProducts?.map((oneElement)=>(
-                      <CartItem cartData={oneElement} chg={setCartProducts} data={cartProducts}/>
+                    {cartProducts?.map((oneElement) => (
+                      <CartItem
+                        cartData={oneElement}
+                        chg={setCartProducts}
+                        data={cartProducts}
+                      />
                     ))}
-                    
                   </tbody>
                 </table>
               </div>
@@ -126,7 +120,11 @@ export default function ShoppingCart() {
                     Total <span>$ {totalPrice}</span>
                   </li>
                 </ul>
-                <a href="#" class="primary-btn" onClick={ (e) => forwardToStripe(e) }>
+                <a
+                  href="#"
+                  class="primary-btn"
+                  onClick={(e) => forwardToStripe(e)}
+                >
                   Proceed to checkout
                 </a>
               </div>
