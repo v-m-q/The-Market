@@ -1,7 +1,7 @@
 import { removeFromCartData, updateCartProductQuantity } from "../../APIs/cart";
 import { useState } from "react";
 
-export default function CartItem({ cartData }) {
+export default function CartItem({ cartData, chg, data }) {
   const base_URL = "http://127.0.0.1:8000";
 
   const [quantity, setQuantity] = useState(cartData.quantity); 
@@ -11,9 +11,10 @@ export default function CartItem({ cartData }) {
     setQuantity(parseInt(event.target.value));
   };
 
-  const removeCartItem = (e, p_id) => {
+  const removeCartItem = (e, ci_id) => {
     e.preventDefault();
-    removeFromCartData(p_id)
+    chg(data.filter((item) => item.cartitem_id  !== ci_id));
+    removeFromCartData(ci_id)
     .then(() => {
       alert("Removed from cart successfully");
     })

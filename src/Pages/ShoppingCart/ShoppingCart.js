@@ -11,7 +11,7 @@ export default function ShoppingCart() {
     getCartData()
       .then((data) => {
         setCartProducts(data.data.cartitem_set);
-        console.log(data)
+        console.log(data);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -66,7 +66,7 @@ export default function ShoppingCart() {
                   <tbody>
 
                     {cartProducts?.map((oneElement)=>(
-                      <CartItem cartData={oneElement}/>
+                      <CartItem cartData={oneElement} chg={setCartProducts} data={cartProducts}/>
                     ))}
                     
                   </tbody>
