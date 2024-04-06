@@ -5,14 +5,15 @@ export default function CartItem({ cartData }) {
   const base_URL = "http://127.0.0.1:8000";
 
   const [quantity, setQuantity] = useState(cartData.quantity); // Initial quantity state
+  const [citemPrice, setcitemPrice] = useState(cartData.product.price*cartData.quantity); // Initial quantity state
 
   const handleQuantityChange = (event) => {
     setQuantity(parseInt(event.target.value));
   };
-
+  
   const updateQuantity = (e, cartItemId) => {
-    console.log("Quantity:", quantity);
-    console.log("Cart Item ID:", cartItemId);
+    
+    setcitemPrice(cartData.product.price*quantity)
       e.preventDefault();
       updateCartProductQuantity(cartItemId, quantity)
         .then(() => {
@@ -44,7 +45,7 @@ export default function CartItem({ cartData }) {
         <td className="cart__price">$ {cartData.product.price}</td>
         <td className="">
           <div>
-            <input type="number" style={{'width': '3em'}} min={1} max={50} onChange={handleQuantityChange} />
+            <input type="number" style={{'width': '3em'}} min={1} max={50} value={quantity} onChange={handleQuantityChange} />
           </div>
         </td>
             <td>
@@ -57,7 +58,7 @@ export default function CartItem({ cartData }) {
           </div>
         </td>
 
-        <td className="cart__total">$ 300.0</td>
+        <td className="cart__total">$ {citemPrice}</td>
         <td className="cart__close">
           <span className="icon_close"></span>
         </td>
