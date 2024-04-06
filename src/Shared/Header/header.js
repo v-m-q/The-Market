@@ -1,5 +1,5 @@
 
-export default function Header() {
+const Header = () => {
   return (
     <>
       <div id="preloder">
@@ -124,3 +124,4 @@ export default function Header() {
   );
 }
 
+export default Header;

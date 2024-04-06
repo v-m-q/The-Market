@@ -1,13 +1,11 @@
-import Products from "./Pages/Products/Products";
-import Header from "./Shared/Header/header";
-import Footer from "./Shared/Footer/footer";
+import { BrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
+import router from "./routes";
 
 function App() {
   return (
-    <>
-      <Header></Header>
-      <Footer></Footer>
-    </>
+    <div>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
