@@ -1,21 +1,24 @@
-import React from "react";
-import login from '../../assets/Sign up-bro.svg'
+import React, { useState } from "react";
+import login from "../../assets/Sign up-bro.svg";
 import { useFormik } from "formik";
 import LoginSchema from "../../schemas/loginSchema";
-import axios from "axios";
+import axiosInstance from "../../APIs/Axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const response = "";
-  const onsubmit = async () => {
-    try {
-      const response = await axios.post( "http://127.0.0.1:8000/account/signin", values, );
-      localStorage.setItem("accessToken", response.data.access);
-      localStorage.setItem("refreshToken", response.data.refresh);
-    } catch ( err ) {
-      setError(err);
-    }
-  }
-  console.log(`status: ${response}`)
+  const [ status, setstatus ] = useState( "" );
+ const navigate = useNavigate();
+  const onsubmit = () => {
+    axiosInstance
+      .post("/account/signin", values)
+      .then( ( res ) => {
+        localStorage.setItem("Token", response.data.access);
+        localStorage.setItem("refreshToken", response.data.refresh);
+        navigate( '/products' )
+      } )
+      .catch((err) => setstatus(err));
+  };
+
   const { values, errors, handleChange, touched, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {
@@ -23,15 +26,13 @@ const Login = () => {
         password: "",
       },
       validationSchema: LoginSchema,
-      onSubmit:onsubmit,
+      onSubmit: onsubmit,
     });
 
   return (
     <div className="limiter">
       <div className="container-login100">
-        <div
-          className="wrap-login100"
-        >
+        <div className="wrap-login100">
           <div
             className="login100-pic js-tilt"
             data-tilt
@@ -92,11 +93,11 @@ const Login = () => {
                 <i className="fa fa-lock" aria-hidden="true"></i>
               </span>
             </div>
-            {/* { error ? (
+            { status!='' ? (
               <p className="text-danger"> wrong password or email</p>
             ) : (
               ""
-            )} */}
+            )}
             <div className="container-login100-form-btn">
               <button className="login100-form-btn" type="submit">
                 Login
@@ -124,6 +125,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Login;
