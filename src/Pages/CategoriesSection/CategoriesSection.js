@@ -1,5 +1,3 @@
-import img from '../img/categories/category-5.jpg';
-
 export default function CategoriesSection() {
   return (
     <>

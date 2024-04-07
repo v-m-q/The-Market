@@ -1,10 +1,10 @@
-import Header from "./Pages/Header/header";
-import Footer from "./Pages/Footer/footer";
 import CategoriesSection from "./Pages/CategoriesSection/CategoriesSection";
 import ProductsList from "./Shared/ProductsList/ProductList";
 import ServicesSection from "./Pages/ServicesSection/CategoriesSection";
 import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 import Payment from "./Pages/Payment/payment";
+import {RouterProvider} from "react-router-dom";
+import router from "./routes";
 
 
 function App() {
@@ -31,13 +31,9 @@ function App() {
   }
 
   return (
-    <>
-      <Header />
-      
-      {Component} 
-      
-      <Footer />
-    </>
+    <div>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

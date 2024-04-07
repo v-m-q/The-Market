@@ -28,27 +28,11 @@ const router = createBrowserRouter([
     // errorElement: <NotFound />,
     children: [
       {
-        element: (
-          <>
-            <Header />
-            <Footer />
-          </>
-        ),
         path: "/",
       },
       
     ]
   },
-  // {
-  //   element: <Layout />,
-  //   errorElement: <NotFound />,
-  //   children: [
-  //     {
-  //       element: <Register />,
-  //       path: "/register"
-  //     },
-  //   ]
-  // }
 ])
 
 export default router;

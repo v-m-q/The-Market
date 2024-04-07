@@ -1,6 +1,14 @@
-import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  const redirectToWishList = () => {
+    navigate("/wishlist");
+  };
+
   return (
     <>
       <div id="preloder">
@@ -44,7 +52,11 @@ export default function Header() {
             <div class="col-xl-3 col-lg-2">
               <div class="header__logo">
                 <a href="./index.html">
-                  <img src="img/logoo.png" style={{width: '50px', height: '50px'}} alt="" />
+                  <img
+                    src="img/logoo.png"
+                    style={{ width: "50px", height: "50px" }}
+                    alt=""
+                  />
                 </a>
               </div>
             </div>
@@ -101,7 +113,12 @@ export default function Header() {
                   </li>
                   <li>
                     <a href="#">
-                      <span class="icon_heart_alt"></span>
+                      <FontAwesomeIcon
+                        icon={farHeart}
+                        onClick={() => {
+                          redirectToWishList();
+                        }}
+                      />
                       <div class="tip">2</div>
                     </a>
                   </li>
@@ -123,4 +140,3 @@ export default function Header() {
     </>
   );
 }
-
