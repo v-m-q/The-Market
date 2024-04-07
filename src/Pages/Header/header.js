@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigator = useNavigate();
   return (
     <>
       <div id="preloder">
@@ -33,8 +34,8 @@ const Header = () => {
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
-          <a href="#">Login</a>
-          <a href="#">Register</a>
+          <a onClick={navigator('login')}>Login</a>
+          <a onClick={navigator('signup')}>Register</a>
         </div>
       </div>
 
@@ -44,7 +45,11 @@ const Header = () => {
             <div class="col-xl-3 col-lg-2">
               <div class="header__logo">
                 <a href="./index.html">
-                  <img src="img/logoo.png" style={{width: '50px', height: '50px'}} alt="" />
+                  <img
+                    src="img/logoo.png"
+                    style={{ width: "50px", height: "50px" }}
+                    alt=""
+                  />
                 </a>
               </div>
             </div>
