@@ -1,11 +1,5 @@
-import CategoriesSection from "./Pages/CategoriesSection/CategoriesSection";
-import ProductsList from "./Shared/ProductsList/ProductList";
-import ServicesSection from "./Pages/ServicesSection/CategoriesSection";
-import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
-import Payment from "./Pages/Payment/payment";
-import {RouterProvider} from "react-router-dom";
+import { BrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
 import router from "./routes";
-
 
 function App() {
 
