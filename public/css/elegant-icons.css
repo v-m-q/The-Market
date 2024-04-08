@@ -83,9 +83,6 @@ you can use the generic selector below, but it's slower:
 .arrow_condense:before {
 	content: "\2f";
 }
-.arrow_expand:before {
-	content: "\30";
-}
 .arrow_move:before {
 	content: "\31";
 }
@@ -374,9 +371,6 @@ you can use the generic selector below, but it's slower:
 .icon_ribbon_alt:before {
 	content: "\e012";
 }
-.icon_bag_alt:before {
-	content: "\e013";
-}
 .icon_creditcard:before {
 	content: "\e014";
 }
@@ -460,9 +454,6 @@ you can use the generic selector below, but it's slower:
 }
 .icon_archive_alt:before {
 	content: "\e02f";
-}
-.icon_heart_alt:before {
-	content: "\e030";
 }
 .icon_star_alt:before {
 	content: "\e031";

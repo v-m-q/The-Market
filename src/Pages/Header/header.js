@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const counter = useSelector((state) => state.counter.counter_val);
   const navigate = useNavigate();
 
   const redirectToWishList = () => {
@@ -119,7 +121,7 @@ export default function Header() {
                           redirectToWishList();
                         }}
                       />
-                      <div className="tip">2</div>
+                      <div className="tip">{counter}</div>
                     </a>
                   </li>
                   <li>
