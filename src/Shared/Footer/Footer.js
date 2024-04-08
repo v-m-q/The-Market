@@ -1,4 +1,4 @@
-export default function Header() {
+const Footer = () => {
   return (
     <>
       <footer class="footer">
@@ -118,3 +118,4 @@ export default function Header() {
     </>
   );
 }
+export default Footer;
