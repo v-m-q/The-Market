@@ -1,12 +1,41 @@
 import React, { useEffect, useState } from "react";
-import array from "./array";
-import { getWishList } from "../../APIs/wishlist";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { getProductsByWishlist } from "../../APIs/wishlist";
+import { removeProductsFromWishlist } from "../../APIs/wishlist";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
-  const [wishitems, setWishitems] = useState(array);
-  console.log(wishitems[0].product_details);
+  const navigate = useNavigate();
+  const [wishitems, setWishitems] = useState([]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("Token")) {
+      navigate("/login");
+    } else {
+      getProductsByWishlist()
+        .then((res) => {
+          setWishitems(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [navigate]);
+
+  const removeItem = (productId) => {
+    removeProductsFromWishlist(productId)
+      .then((res) => {
+        const updatedWishitems = wishitems.filter(
+          (item) => item.product.id !== productId
+        );
+
+        setWishitems(updatedWishitems);
+
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <section class="shop-cart spad">
@@ -19,7 +48,7 @@ const Wishlist = () => {
                   <tr>
                     <th>Product</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 {wishitems.map((item, id) => (
@@ -42,9 +71,14 @@ const Wishlist = () => {
                         $ {item.product_details.price}
                       </td>
                       <td class="cart__close">
-                        <span class="icon_close">
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </span>
+                        <button>
+                          <FontAwesomeIcon
+                            icon={faTrashAlt}
+                            onClick={() => {
+                              removeItem(item.product);
+                            }}
+                          />
+                        </button>
                       </td>
                     </tr>
                   </tbody>
