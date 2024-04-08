@@ -42,17 +42,17 @@ const SignUp = () => {
        onSubmit,
      });
   return (
-    <div class="d-lg-flex half">
+    <div className="d-lg-flex half">
       <div
-        class="bg order-1 order-md-2"
+        className="bg order-1 order-md-2"
         style={{ backgroundImage: `url(${bg})` }}
       ></div>
-      <div class="contents order-2 order-md-1">
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-7 py-5">
+      <div className="contents order-2 order-md-1">
+        <div className="container">
+          <div className="row align-items-center justify-content-center">
+            <div className="col-md-7 py-5">
               <h3>Register</h3>
-              <p class="mb-4">
+              <p className="mb-4">
                 Become part of our family! Register today and engage with us
                 through reviews, ratings, and more.
               </p>
@@ -62,14 +62,14 @@ const SignUp = () => {
                 onSubmit={handleSubmit}
                 ref={formRef}
               >
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group first">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group first">
                       <label for="fname">First Name</label>
                       <input
                         autoComplete="off"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="e.g. John"
                         id="first_name"
                         name="first_name"
@@ -83,13 +83,13 @@ const SignUp = () => {
                       )}
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group first">
+                  <div className="col-md-6">
+                    <div className="form-group first">
                       <label for="lname">Last Name</label>
                       <input
                         autoComplete="off"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="e.g. Smith"
                         id="last_name"
                         name="last_name"
@@ -104,14 +104,14 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group first">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group first">
                       <label for="email">Email Address</label>
                       <input
                         autoComplete="off"
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         placeholder="e.g. john@your-domain.com"
                         id="email"
                         name="email"
@@ -126,14 +126,14 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group first">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group first">
                       <label for="phone">Phone Number</label>
                       <input
                         autoComplete="off"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="00000000000"
                         id="phone"
                         name="phone"
@@ -147,13 +147,13 @@ const SignUp = () => {
                       )}
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group first">
+                  <div className="col-md-6">
+                    <div className="form-group first">
                       <label for="address">Address</label>
                       <input
                         autoComplete="off"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="street city"
                         id="address"
                         name="address"
@@ -168,14 +168,14 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group last mb-3">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group last mb-3">
                       <label for="password">Password</label>
                       <input
                         autoComplete="off"
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your Password"
                         id="password"
                         name="password"
@@ -189,13 +189,13 @@ const SignUp = () => {
                       )}
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group last mb-3">
+                  <div className="col-md-6">
+                    <div className="form-group last mb-3">
                       <label for="confirm-password">Re-type Password</label>
                       <input
                         autoComplete="off"
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your Password"
                         id="confirm_password"
                         name="confirm_password"
@@ -211,16 +211,16 @@ const SignUp = () => {
                   </div>
                 </div>
 
-                <div class="d-flex mb-5 mt-4 align-items-center">
-                  <div class="d-flex align-items-center">
-                    <label class="control control--checkbox mb-0">
-                      <span class="caption">
+                <div className="d-flex mb-5 mt-4 align-items-center">
+                  <div className="d-flex align-items-center">
+                    <label className="control control--checkbox mb-0">
+                      <span className="caption">
                         Creating an account means you're okay with our{" "}
                         <a href="#">Terms and Conditions</a> and our{" "}
                         <a href="#">Privacy Policy</a>.
                       </span>
                       <input type="checkbox" checked="checked" />
-                      <div class="control__indicator"></div>
+                      <div className="control__indicator"></div>
                     </label>
                   </div>
                 </div>
@@ -228,7 +228,7 @@ const SignUp = () => {
                 <input
                   type="submit"
                   value="Register"
-                  class="btn px-5 btn-primary"
+                  className="btn px-5 btn-primary"
                 />
                 {registrationMessage && (
                   <p className="alert alert-success m-t-5">

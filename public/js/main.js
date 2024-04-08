@@ -102,7 +102,7 @@ Created: Colorib
         items: 1,
         dots: false,
         nav: true,
-        navText: ["<i class='arrow_carrot-left'></i>","<i class='arrow_carrot-right'></i>"],
+        navText: ["<i className='arrow_carrot-left'></i>","<i className='arrow_carrot-right'></i>"],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: false,
@@ -167,7 +167,7 @@ Created: Colorib
     /* var timerdate = "2020/12/30" */
 
 	$("#countdown-time").countdown(timerdate, function(event) {
-        $(this).html(event.strftime("<div class='countdown__item'><span>%D</span> <p>Day</p> </div>" + "<div class='countdown__item'><span>%H</span> <p>Hour</p> </div>" + "<div class='countdown__item'><span>%M</span> <p>Min</p> </div>" + "<div class='countdown__item'><span>%S</span> <p>Sec</p> </div>"));
+        $(this).html(event.strftime("<div className='countdown__item'><span>%D</span> <p>Day</p> </div>" + "<div className='countdown__item'><span>%H</span> <p>Hour</p> </div>" + "<div className='countdown__item'><span>%M</span> <p>Min</p> </div>" + "<div className='countdown__item'><span>%S</span> <p>Sec</p> </div>"));
     });
 
     /*-------------------
@@ -206,8 +206,8 @@ Created: Colorib
 		Quantity change
 	--------------------- */
     var proQty = $('.pro-qty');
-	proQty.prepend('<span class="dec qtybtn">-</span>');
-	proQty.append('<span class="inc qtybtn">+</span>');
+	proQty.prepend('<span className="dec qtybtn">-</span>');
+	proQty.append('<span className="inc qtybtn">+</span>');
 	proQty.on('click', '.qtybtn', function () {
 		var $button = $(this);
 		var oldValue = $button.parent().find('input').val();

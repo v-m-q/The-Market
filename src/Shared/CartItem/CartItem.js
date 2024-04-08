@@ -59,7 +59,7 @@ export default function CartItem({ cartData, chg, data }) {
           </div>
         </td>
             <td>
-              <button type="button" class="btn btn-success" onClick={(e) => updateQuantity(e, cartData.cartitem_id)} style={{'margin': '8px'}}>Apply</button>
+              <button type="button" className="btn btn-success" onClick={(e) => updateQuantity(e, cartData.cartitem_id)} style={{'margin': '8px'}}>Apply</button>
             </td>
 
         <td className="">

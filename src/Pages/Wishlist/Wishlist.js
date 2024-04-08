@@ -38,11 +38,11 @@ const Wishlist = () => {
   };
 
   return (
-    <section class="shop-cart spad">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="shop__cart__table">
+    <section className="shop-cart spad">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="shop__cart__table">
               <table>
                 <thead>
                   <tr>
@@ -54,23 +54,23 @@ const Wishlist = () => {
                 {wishitems.map((item, id) => (
                   <tbody key={id}>
                     <tr>
-                      <td class="cart__product__item">
+                      <td className="cart__product__item">
                         <img src="img/shop-cart/cp-1.jpg" alt="" />
-                        <div class="cart__product__item__title">
+                        <div className="cart__product__item__title">
                           <h6>{item.product_details.name}</h6>
-                          <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                          <div className="rating">
+                            <i className="fa fa-star"></i>
+                            <i className="fa fa-star"></i>
+                            <i className="fa fa-star"></i>
+                            <i className="fa fa-star"></i>
+                            <i className="fa fa-star"></i>
                           </div>
                         </div>
                       </td>
-                      <td class="cart__price">
+                      <td className="cart__price">
                         $ {item.product_details.price}
                       </td>
-                      <td class="cart__close">
+                      <td className="cart__close">
                         <button>
                           <FontAwesomeIcon
                             icon={faTrashAlt}

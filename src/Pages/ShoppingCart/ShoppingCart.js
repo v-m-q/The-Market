@@ -41,13 +41,13 @@ export default function ShoppingCart() {
 
   return (
     <>
-      <div class="breadcrumb-option">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="breadcrumb__links">
+      <div className="breadcrumb-option">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="breadcrumb__links">
                 <a href="./index.html">
-                  <i class="fa fa-home"></i> Home
+                  <i className="fa fa-home"></i> Home
                 </a>
                 <span>Shopping cart</span>
               </div>
@@ -56,11 +56,11 @@ export default function ShoppingCart() {
         </div>
       </div>
 
-      <section class="shop-cart spad">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="shop__cart__table">
+      <section className="shop-cart spad">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="shop__cart__table">
                 <table>
                   <thead>
                     <tr>
@@ -86,34 +86,34 @@ export default function ShoppingCart() {
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <div class="cart__btn">
+          <div className="row">
+            <div className="col-lg-6 col-md-6 col-sm-6">
+              <div className="cart__btn">
                 <a href="#">Continue Shopping</a>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <div class="cart__btn update__btn">
+            <div className="col-lg-6 col-md-6 col-sm-6">
+              <div className="cart__btn update__btn">
                 <a href="#">
-                  <span class="icon_loading"></span> Update cart
+                  <span className="icon_loading"></span> Update cart
                 </a>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="discount__content">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="discount__content">
                 <h6>Discount codes</h6>
                 <form action="#">
                   <input type="text" placeholder="Enter your coupon code" />
-                  <button type="submit" class="site-btn">
+                  <button type="submit" className="site-btn">
                     Apply
                   </button>
                 </form>
               </div>
             </div>
-            <div class="col-lg-4 offset-lg-2">
-              <div class="cart__total__procced">
+            <div className="col-lg-4 offset-lg-2">
+              <div className="cart__total__procced">
                 <h6>Cart total</h6>
                 <ul>
                   <li>
@@ -122,7 +122,7 @@ export default function ShoppingCart() {
                 </ul>
                 <a
                   href="#"
-                  class="primary-btn"
+                  className="primary-btn"
                   onClick={(e) => forwardToStripe(e)}
                 >
                   Proceed to checkout
