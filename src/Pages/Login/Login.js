@@ -12,13 +12,14 @@ const Login = () => {
     axiosInstance
       .post("/account/signin", values)
       .then( ( res ) => {
-        localStorage.setItem("Token", response.data.access);
-        localStorage.setItem("refreshToken", response.data.refresh);
+        localStorage.setItem("Token", res.data.access);
+        localStorage.setItem( "refreshToken", res.data.refresh );
+        setstatus('')
         navigate( '/products' )
       } )
       .catch((err) => setstatus(err));
   };
-
+console.log(`status: ${status}`)
   const { values, errors, handleChange, touched, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {
