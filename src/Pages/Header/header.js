@@ -34,8 +34,6 @@ const Header = () => {
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
-          <a onClick={navigator('login')}>Login</a>
-          <a onClick={navigator('signup')}>Register</a>
         </div>
       </div>
 
@@ -97,6 +95,10 @@ const Header = () => {
             <div class="col-lg-3">
               <div class="header__right">
                 <div class="header__right__auth">
+                  <ul>
+                    <li>login</li>
+                    <li>Register</li>
+                  </ul>
                   <a href="#">Login</a>
                   <a href="#">Register</a>
                 </div>
