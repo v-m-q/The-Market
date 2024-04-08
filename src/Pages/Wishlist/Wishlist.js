@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { getProductsByWishlist } from "../../APIs/wishlist";
 import { removeProductsFromWishlist } from "../../APIs/wishlist";
+import RatingComponent from "../../Shared/Rating/Rating";
 import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
@@ -24,13 +25,11 @@ const Wishlist = () => {
   const removeItem = (productId) => {
     removeProductsFromWishlist(productId)
       .then((res) => {
-        const updatedWishitems = wishitems.filter(
-          (item) => item.product.id !== productId
-        );
-
-        setWishitems(updatedWishitems);
-
-        window.location.reload();
+        getProductsByWishlist()
+          .then((res) => {
+            setWishitems(res.data);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => {
         console.log(err);
@@ -38,53 +37,64 @@ const Wishlist = () => {
   };
 
   return (
-    <section class="shop-cart spad">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="shop__cart__table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                {wishitems.map((item, id) => (
-                  <tbody key={id}>
+    <section className="shop-cart spad">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            {wishitems.length === 0 ? (
+              <div
+                style={{
+                  textAlign: "center",
+                  fontSize: "24px",
+                  marginTop: "50px",
+                  color: "#ca1515",
+                }}
+              >
+                Wishlist is empty
+              </div>
+            ) : (
+              <div className="shop__cart__table">
+                <table>
+                  <thead>
                     <tr>
-                      <td class="cart__product__item">
-                        <img src="img/shop-cart/cp-1.jpg" alt="" />
-                        <div class="cart__product__item__title">
-                          <h6>{item.product_details.name}</h6>
-                          <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="cart__price">
-                        $ {item.product_details.price}
-                      </td>
-                      <td class="cart__close">
-                        <button>
-                          <FontAwesomeIcon
-                            icon={faTrashAlt}
-                            onClick={() => {
-                              removeItem(item.product);
-                            }}
-                          />
-                        </button>
-                      </td>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Action</th>
                     </tr>
-                  </tbody>
-                ))}
-              </table>
-            </div>
+                  </thead>
+                  {wishitems.map((item, id) => (
+                    <tbody key={id}>
+                      <tr>
+                        <td className="cart__product__item">
+                          <img src="img/shop-cart/cp-1.jpg" alt="" />
+                          <div className="cart__product__item__title">
+                            <h6>{item.product_details.name}</h6>
+                            <div className="rating">
+                              <RatingComponent
+                                value={item.product_details.avg_rate}
+                              />
+                            </div>
+                          </div>
+                        </td>
+                        <td className="cart__price">
+                          $ {item.product_details.price}
+                        </td>
+                        <td className="cart__close">
+                          <button>
+                            <FontAwesomeIcon
+                              icon={faTrashAlt}
+                              onClick={() => {
+                                removeItem(item.product);
+                              }}
+                            />
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
+                </table>
+              </div>
+            )}
           </div>
         </div>
       </div>
