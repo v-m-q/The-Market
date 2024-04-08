@@ -59,7 +59,7 @@ const Wishlist = () => {
                     <tr>
                       <th>Product</th>
                       <th>Price</th>
-                      <th>Action</th>
+                      <th></th>
                     </tr>
                   </thead>
                   {wishitems.map((item, id) => (
