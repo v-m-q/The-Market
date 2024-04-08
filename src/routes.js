@@ -9,6 +9,7 @@ import Wishlist from "./Pages/Wishlist/Wishlist";
 
 import Profile from "./Pages/UserProfile/Profile";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
+import AllProducts from "./Pages/Shop/Shop";
 const LayOut = () => {
   return (
     <>
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
+      },
+      {
+        path: "shop",
+        element: <AllProducts />,
       },
       {
         path: "products/:id",
