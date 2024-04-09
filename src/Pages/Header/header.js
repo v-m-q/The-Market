@@ -10,7 +10,7 @@ export default function Header() {
   const redirectToWishList = () => {
     navigate("/wishlist");
   };
-  
+
   return (
     <>
       <div id="preloder">
@@ -114,15 +114,13 @@ export default function Header() {
                     <span className="icon_search search-switch"></span>
                   </li>
                   <li>
-                    <a href="">
-                      <FontAwesomeIcon
-                        icon={farHeart}
-                        onClick={() => {
-                          redirectToWishList();
-                        }}
-                      />
-                      <div className="tip">{counter}</div>
-                    </a>
+                    <FontAwesomeIcon
+                      icon={farHeart}
+                      onClick={() => {
+                        redirectToWishList();
+                      }}
+                    />
+                    <div className="tip">{counter}</div>
                   </li>
                   <li>
                     <a href="cart">

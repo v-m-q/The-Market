@@ -1,60 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getProductDetails, searchForProducts } from "../../APIs/products";
+import RatingComponent from "../../Shared/Rating/Rating";
+import Card from "../../Shared/Card/Card";
+import LikedProduct from "../../Shared/LikedProduct/LikedProduct";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
+  const [productSearch, setproductSearch] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [rating, setRating] = useState(0);
+  const params = useParams();
+
+  useEffect(() => {
+    getProductDetails(params.id)
+      .then((res) => setProduct(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    searchForProducts(product.category_name?.name)
+      .then((res) => setproductSearch(res.data))
+      .catch((err) => console.log(err));
+  }, [product.category_name?.name]);
+
+  const handleRating = (event, newRating) => {
+    setRating(newRating);
+    console.log(newRating);
+  };
+
+  if (!product) {
+    return null;
+  }
+
   return (
     <div>
-      <div id="preloder">
-        <div className="loader"></div>
-      </div>
-
-      <div className="offcanvas-menu-overlay"></div>
-      <div className="offcanvas-menu-wrapper">
-        <div className="offcanvas__close">+</div>
-        <ul className="offcanvas__widget">
-          <li>
-            <span className="icon_search search-switch"></span>
-          </li>
-          <li>
-            <a href="#">
-              <span className="icon_heart_alt"></span>
-              <div className="tip">2</div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span className="icon_bag_alt"></span>
-              <div className="tip">2</div>
-            </a>
-          </li>
-        </ul>
-        <div className="offcanvas__logo">
-          <a href="./index.html">
-            <img src="img/logo.png" alt="" />
-          </a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div className="offcanvas__auth">
-          <a href="#">Login</a>
-          <a href="#">Register</a>
-        </div>
-      </div>
-
-      <div className="breadcrumb-option">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcrumb__links">
-                <a href="./index.html">
-                  <i className="fa fa-home"></i> Home
-                </a>
-                <a href="#">Women’s </a>
-                <span>Essential structured blazer</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <section className="product-details spad">
         <div className="container">
           <div className="row">
@@ -106,244 +90,64 @@ const ProductDetails = () => {
             </div>
             <div className="col-lg-6">
               <div className="product__details__text">
-                <h3>
-                  Essential structured blazer{" "}
-                  <span>Brand: SKMEIMore Men Watches from SKMEI</span>
-                </h3>
-                <div className="rating">
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <span>( 138 reviews )</span>
+                <h3>{product.name}</h3>
+                <h5>
+                  Category:{" "}
+                  {product.category_name && product.category_name.name}
+                </h5>
+                <div>
+                  <RatingComponent value={product.avg_rate} />
                 </div>
-                <div className="product__details__price">
-                  $ 75.0 <span>$ 83.0</span>
-                </div>
-                <p>
-                  Nemo enim ipsam voluptatem quia aspernatur aut odit aut loret
-                  fugit, sed quia consequuntur magni lores eos qui ratione
-                  voluptatem sequi nesciunt.
-                </p>
+                <div className="product__details__price">$ {product.price}</div>
+                <p>{product.description}</p>
                 <div className="product__details__button">
-                  <div className="quantity">
-                    <span>Quantity:</span>
-                    <div className="pro-qty">
-                      <input type="text" value="1" />
-                    </div>
-                  </div>
-                  <a href="#" className="cart-btn">
-                    <span className="icon_bag_alt"></span> Add to cart
-                  </a>
                   <ul>
                     <li>
-                      <a href="#">
-                        <span className="icon_heart_alt"></span>
-                      </a>
+                      <LikedProduct product={product.product_id} />
                     </li>
                     <li>
-                      <a href="#">
-                        <span className="icon_adjust-horiz"></span>
-                      </a>
+                      <FontAwesomeIcon icon={faShoppingBag} />
                     </li>
                   </ul>
                 </div>
                 <div className="product__details__widget">
                   <ul>
                     <li>
-                      <span>Availability:</span>
-                      <div className="stock__checkbox">
-                        <label for="stockin">
-                          In Stock
-                          <input type="checkbox" id="stockin" />
-                          <span className="checkmark"></span>
-                        </label>
-                      </div>
+                      <span>Availability: </span>
+                      <span>
+                        {" "}
+                        {product.quantity === 0 ? (
+                          <span className="out-of-stock">Out of Stock</span>
+                        ) : (
+                          <span className="in-stock">In Stock</span>
+                        )}
+                      </span>
                     </li>
-
+                    <li>
+                      <Stack spacing={1}>
+                        <Rating
+                          name="half-rating"
+                          precision={0.5}
+                          value={rating}
+                          onChange={handleRating}
+                        />
+                      </Stack>
+                    </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div className="row">
             <div className="col-lg-12 text-center">
               <div className="related__title">
                 <h5>RELATED PRODUCTS</h5>
               </div>
             </div>
-            <div className="col-lg-3 col-md-4 col-sm-6">
-              <div className="product__item">
-                <div
-                  className="product__item__pic set-bg"
-                  data-setbg="img/product/related/rp-1.jpg"
-                >
-                  <div className="label new">New</div>
-                  <ul className="product__hover">
-                    <li>
-                      <a
-                        href="img/product/related/rp-1.jpg"
-                        className="image-popup"
-                      >
-                        <span className="arrow_expand"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_heart_alt"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_bag_alt"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="product__item__text">
-                  <h6>
-                    <a href="#">Buttons tweed blazer</a>
-                  </h6>
-                  <div className="rating">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div>
-                  <div className="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-sm-6">
-              <div className="product__item">
-                <div
-                  className="product__item__pic set-bg"
-                  data-setbg="img/product/related/rp-2.jpg"
-                >
-                  <ul className="product__hover">
-                    <li>
-                      <a
-                        href="img/product/related/rp-2.jpg"
-                        className="image-popup"
-                      >
-                        <span className="arrow_expand"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_heart_alt"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_bag_alt"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="product__item__text">
-                  <h6>
-                    <a href="#">Flowy striped skirt</a>
-                  </h6>
-                  <div className="rating">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div>
-                  <div className="product__price">$ 49.0</div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-sm-6">
-              <div className="product__item">
-                <div
-                  className="product__item__pic set-bg"
-                  data-setbg="img/product/related/rp-3.jpg"
-                >
-                  <div className="label stockout">out of stock</div>
-                  <ul className="product__hover">
-                    <li>
-                      <a
-                        href="img/product/related/rp-3.jpg"
-                        className="image-popup"
-                      >
-                        <span className="arrow_expand"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_heart_alt"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_bag_alt"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="product__item__text">
-                  <h6>
-                    <a href="#">Cotton T-Shirt</a>
-                  </h6>
-                  <div className="rating">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div>
-                  <div className="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 col-sm-6">
-              <div className="product__item">
-                <div
-                  className="product__item__pic set-bg"
-                  data-setbg="img/product/related/rp-4.jpg"
-                >
-                  <ul className="product__hover">
-                    <li>
-                      <a
-                        href="img/product/related/rp-4.jpg"
-                        className="image-popup"
-                      >
-                        <span className="arrow_expand"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_heart_alt"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="icon_bag_alt"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="product__item__text">
-                  <h6>
-                    <a href="#">Slim striped pocket shirt</a>
-                  </h6>
-                  <div className="rating">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div>
-                  <div className="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
+            {productSearch.slice(-4).map((productItem) => (
+              <Card key={productItem.product_id} product={productItem} />
+            ))}
           </div>
         </div>
       </section>

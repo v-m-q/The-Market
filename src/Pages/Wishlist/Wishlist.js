@@ -69,7 +69,7 @@ const Wishlist = () => {
                           <img src="img/shop-cart/cp-1.jpg" alt="" />
                           <div className="cart__product__item__title">
                             <h6>{item.product_details.name}</h6>
-                            <div className="rating">
+                            <div>
                               <RatingComponent
                                 value={item.product_details.avg_rate}
                               />

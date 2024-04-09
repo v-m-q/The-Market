@@ -1,18 +1,20 @@
 import { addProductToCart } from "../../APIs/cart";
-import { incrementCounter } from "../../store/slices/counter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 import RatingComponent from "../Rating/Rating";
-import { addProductsToWishlist } from "../../APIs/wishlist";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Card.css";
+import LikedProduct from "../LikedProduct/LikedProduct";
 
 export default function Card({ product }) {
-  const [isInWishlist, setIsInWishlist] = useState(false);
-  const dispatch = useDispatch();
   const base_URL = "http://127.0.0.1:8000";
+
+  const navigate = useNavigate();
+
+  const redirectToProductDetails = (id) => {
+    navigate(`/products/${id}`);
+  };
 
   function addToCart(e, id) {
     e.preventDefault();
@@ -21,6 +23,31 @@ export default function Card({ product }) {
         alert("Added to cart successfully");
       })
       .catch((err) => alert("Auth error : --"));
+  }
+  /*
+  useEffect(() => {
+    const checkIfInWishlist = () => {
+      try {
+        const res = getProductsByWishlist();
+        console.log("Wishlist response:", res);
+        const wishlistProducts = res.data;
+
+        const isInWishlist = wishlistProducts.some(
+          (wishlistProduct) => wishlistProduct.productId === product.productId
+        );
+
+        setIsInWishlist(isInWishlist);
+      } catch (error) {
+        console.error("Error fetching wishlist:", error);
+      }
+    };
+
+    checkIfInWishlist();
+  }, [product.productId]);
+*/
+
+  if (!product) {
+    return null;
   }
 
   return (
@@ -40,39 +67,35 @@ export default function Card({ product }) {
             )}
             <ul className="product__hover">
               <li>
-                <a href="img/product/product-1.jpg" className="image-popup">
-                  <span
-                    className="arrow_expand"
-                    onclick={(e) => showDetails(e, product)}
-                  ></span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="icon_heart_alt">
-                    <FontAwesomeIcon
-                      icon={isInWishlist ? fasHeart : farHeart}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(incrementCounter());
-                        toggleWishlist(product.product_id);
-                      }}
-                    />
+                <a href={`${product.thumbnail}`} className="image-popup">
+                  <span className="arrow_expand">
+                    <FontAwesomeIcon icon={faArrowUpLong} />
                   </span>
                 </a>
               </li>
               <li>
-                <a href="#" onClick={(e) => addToCart(e, product.product_id)}>
-                  <span className="icon_bag_alt"></span>
-                </a>
+                <span className="icon_heart_alt">
+                  <LikedProduct product={product.product_id} />
+                </span>
+              </li>
+              <li>
+                <FontAwesomeIcon
+                  icon={faShoppingBag}
+                  onClick={(e) => addToCart(e, product.product_id)}
+                />
               </li>
             </ul>
           </div>
           <div className="product__item__text">
             <h6>
-              <a href="#">{product.name}</a>
+              <p
+                className="product-header"
+                onClick={() => redirectToProductDetails(product.product_id)}
+              >
+                {product.name}
+              </p>
             </h6>
-            <div className="rating">
+            <div>
               <RatingComponent value={product.avg_rate} />
             </div>
             <div className="product__price">$ {product.price}</div>

@@ -1,0 +1,8 @@
+.out-of-stock, .in-stock {
+    color: #CA1515;
+    font-size: 20px;
+}
+
+.in-stock {
+    color: blue;
+}
