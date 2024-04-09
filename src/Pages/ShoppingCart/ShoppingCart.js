@@ -6,27 +6,26 @@ import { stripeCheckout } from "../../APIs/payment";
 export default function ShoppingCart() {
   const [cartProducts, setCartProducts] = useState([]);
 
-  let tp = 0;
-  const [totalPrice, setTotalprice] = useState(tp);
-
+  const [totalPrice, setTotalprice] = useState(null);
+  
   useEffect(() => {
     getCartData()
       .then((data) => {
-        setCartProducts(data.data.cartitem_set);
-
-        if (cartProducts !== null) {
-          prepareTotalPrice();
-        }
-
+        setCartProducts(data.data);
+        prepareTotalPrice();
       })
       .catch((err) => console.log(err.message));
-  }, [cartProducts]);
+    }, [totalPrice]);
+    
+    const prepareTotalPrice = () => {
+      let tp = 0;
+      if (cartProducts !== null) {
+        for (let i = 0; i < cartProducts.length; i++) {
+          tp += cartProducts[i].quantity * cartProducts[i].product.price;
+        }
+        setTotalprice(tp);
+      }
 
-  const prepareTotalPrice = () => {
-    for (let i = 0; i < cartProducts.length; i++) {
-      tp += cartProducts[i].quantity * cartProducts[i].product.price;
-    }
-    setTotalprice(tp);
   };
 
   const forwardToStripe = (e) => {
@@ -66,9 +65,9 @@ export default function ShoppingCart() {
                     <tr>
                       <th>Product</th>
                       <th>Price</th>
-                      <th>Ch Quantity</th>
+                      <th>C-Q</th>
                       <th>Apply</th>
-                      <th>Quantity</th>
+                      <th>Q</th>
                       <th>Total</th>
                       <th></th>
                     </tr>
@@ -79,6 +78,8 @@ export default function ShoppingCart() {
                         cartData={oneElement}
                         chg={setCartProducts}
                         data={cartProducts}
+                        cart_total={totalPrice}
+                        chg_cart_total={setTotalprice}
                       />
                     ))}
                   </tbody>
@@ -94,21 +95,21 @@ export default function ShoppingCart() {
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
               <div class="cart__btn update__btn">
-                <a href="#">
-                  <span class="icon_loading"></span> Update cart
-                </a>
+                {/* <a href="#"> */}
+                  {/* <span class="icon_loading"></span>   */}
+                {/* </a> */}
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-6">
               <div class="discount__content">
-                <h6>Discount codes</h6>
+                <h6>  </h6>
                 <form action="#">
-                  <input type="text" placeholder="Enter your coupon code" />
-                  <button type="submit" class="site-btn">
-                    Apply
-                  </button>
+                  {/* <input type="text" placeholder="Enter your coupon code" /> */}
+                  {/* <button type="submit" class="site-btn">
+                     
+                  </button> */}
                 </form>
               </div>
             </div>

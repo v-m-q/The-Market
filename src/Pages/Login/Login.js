@@ -15,7 +15,7 @@ const Login = () => {
         localStorage.setItem("Token", res.data.access);
         localStorage.setItem( "refreshToken", res.data.refresh );
         setstatus('')
-        navigate( '/products' )
+        navigate( '/' )
       } )
       .catch((err) => setstatus(err));
   };

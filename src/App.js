@@ -1,33 +1,14 @@
-import { BrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import router from "./routes";
 
 function App() {
 
-  localStorage.setItem('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNDIxNDI2LCJpYXQiOjE3MTI0MTc4MjYsImp0aSI6IjcxNzEzMWEzM2U4NjRmOWE5MWM1OTA4Nzk1OWNmNzhjIiwidXNlcl9pZCI6MSwiZW1haWwiOiJhaG1laWlkQG1oYWl5eWwuY29tIn0.IdZtwHkdxRNyXe1kQKLm6vQSGmX2ke0n9OZ-yOOh3b4');
+  localStorage.setItem('auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNjc2ODA0LCJpYXQiOjE3MTI2NzMyMDQsImp0aSI6IjIyOTNiNzgyNWIzYzQ3MmQ5ZTNmZTVjZGY5MGEyNDljIiwidXNlcl9pZCI6MiwiZW1haWwiOiJtb2hhbWVkQG1haWwuY29tIn0.vuyDs1ZW5B6lQ1C4ZOh70zaabdXehWvkFRp0z1zoWFA');
   
-  let Component;
-
-  switch (window.location.pathname) {
-    case "/":
-      Component = <> <CategoriesSection/> <ProductsList/> <ServicesSection/> </> 
-      break;
-
-    case "/cart":
-      Component = <ShoppingCart/>
-      break;
-    
-    case "/payment-stripe-page":
-      Component = <Payment/>
-      break;
-  
-    default:
-      break;
-  }
-
   return (
-    <div>
+    <>
       <RouterProvider router={router} />
-    </div>
+     </>
   );
 }
 
