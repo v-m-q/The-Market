@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductDetails, searchForProducts } from "../../APIs/products";
+import {
+  ProductsByCategories,
+  getProductDetails,
+  rateProducts,
+  searchForProducts,
+} from "../../APIs/products";
 import RatingComponent from "../../Shared/Rating/Rating";
 import Card from "../../Shared/Card/Card";
 import LikedProduct from "../../Shared/LikedProduct/LikedProduct";
@@ -11,27 +16,33 @@ import Stack from "@mui/material/Stack";
 import "./ProductDetails.css";
 
 const ProductDetails = () => {
-  const [productSearch, setproductSearch] = useState([]);
+  const [productCategory, setproductCategory] = useState([]);
   const [product, setProduct] = useState([]);
   const [rating, setRating] = useState(0);
   const params = useParams();
+  console.log(params);
+
+  const handleRating = (newRating) => {
+    const productRating = setRating(newRating);
+    rateProducts(product.product_id, productRating)
+      .then((res) => setRating(res))
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     getProductDetails(params.id)
-      .then((res) => setProduct(res.data))
+      .then((res) => {
+        setProduct(res.data);
+        ProductsByCategories(res.data.category_id)
+          .then((res) => {
+            setproductCategory(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
       .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    searchForProducts(product.category_name?.name)
-      .then((res) => setproductSearch(res.data))
-      .catch((err) => console.log(err));
-  }, [product.category_name?.name]);
-
-  const handleRating = (event, newRating) => {
-    setRating(newRating);
-    console.log(newRating);
-  };
+  }, [rating]);
 
   if (!product) {
     return null;
@@ -98,6 +109,7 @@ const ProductDetails = () => {
                 <div>
                   <RatingComponent value={product.avg_rate} />
                 </div>
+                <div>{product.avg_rate}</div>
                 <div className="product__details__price">$ {product.price}</div>
                 <p>{product.description}</p>
                 <div className="product__details__button">
@@ -124,14 +136,18 @@ const ProductDetails = () => {
                       </span>
                     </li>
                     <li>
-                      <Stack spacing={1}>
-                        <Rating
-                          name="half-rating"
-                          precision={0.5}
-                          value={rating}
-                          onChange={handleRating}
-                        />
-                      </Stack>
+                      {rating === 0 ? (
+                        <Stack spacing={1}>
+                          <Rating
+                            name="half-rating"
+                            precision={0.5}
+                            value={rating}
+                            onChange={handleRating}
+                          />
+                        </Stack>
+                      ) : (
+                        <Rating name="disabled" value={rating} disabled />
+                      )}
                     </li>
                   </ul>
                 </div>
@@ -145,7 +161,7 @@ const ProductDetails = () => {
                 <h5>RELATED PRODUCTS</h5>
               </div>
             </div>
-            {productSearch.slice(-4).map((productItem) => (
+            {productCategory.slice(-4).map((productItem) => (
               <Card key={productItem.product_id} product={productItem} />
             ))}
           </div>
