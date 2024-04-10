@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import UpdateProfileSchema from "../../schemas/UpdateProfile";
 import axiosInstance from "../../APIs/Axios";
+import userImg from "../../assets/user.png";
 import "./UpdateProfile.css";
 const UpdateProfile = () => {
   const user = useSelector((state) => state.profile.userData);
@@ -55,7 +56,7 @@ const UpdateProfile = () => {
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                    src={userImg}
                     alt="Admin"
                     className="rounded-circle p-1 bg-primary"
                     width="110"

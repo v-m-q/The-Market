@@ -7,7 +7,6 @@ const Header = () => {
       <div id="preloder">
         <div class="loader"></div>
       </div>
-
       <div class="offcanvas-menu-overlay"></div>
       <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__close">+</div>
@@ -95,12 +94,8 @@ const Header = () => {
             <div class="col-lg-3">
               <div class="header__right">
                 <div class="header__right__auth">
-                  <ul>
-                    <li>login</li>
-                    <li>Register</li>
-                  </ul>
-                  <a href="#">Login</a>
-                  <a href="#">Register</a>
+                  <Link  to="login">Login</Link>
+                  <Link to="signup">Register</Link>
                 </div>
                 <ul class="header__right__widget">
                   <li>

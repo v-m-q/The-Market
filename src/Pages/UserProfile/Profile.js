@@ -4,6 +4,7 @@ import axiosInstance from "../../APIs/Axios";
 import { useNavigate,Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserProfileData } from "../../store/slices/profileSlice";
+import userImg from '../../assets/user.png'
 const Profile = () => {
   const user = useSelector((state) => state.profile.userData);
   const navigator = useNavigate()
@@ -50,7 +51,7 @@ const Profile = () => {
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                    src={userImg}
                     alt="Admin"
                     className="rounded-circle"
                     width="150"
