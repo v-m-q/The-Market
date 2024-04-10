@@ -1,55 +1,83 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; 
 import { getAllOrders, getAllOrdersItems } from "../../APIs/orders";
-import Card from "../../Shared/Card/Card";
-import "./Orders.css"; 
+import "./Orders.css";
 
 export default function AllOrders() {
     const [orders, setOrders] = useState([]);
+    const [initialFetchCompleted] = useState(false);
 
     useEffect(() => {
-        getAllOrders().then(async (res) => {
+        getAllOrders()
+            .then(response => {
+                const fetchedOrders = response.data.orders.map(order => ({
+                    ...order,
+                    totalItems: 0 
+                }));
+                setOrders(fetchedOrders);
+            })
+            .catch(error => {
+                console.error("Error fetching orders:", error);
+            });
+    }, []);
+
+    useEffect(() => {
+        const fetchOrderItems = async () => {
             const ordersWithItems = await Promise.all(
-                res.data.orders.map(async (order) => {
-                    const itemsResponse = await getAllOrdersItems(order.order_id);
-                    return { ...order, orderitems: itemsResponse.data };
+                orders.map(async order => {
+                    try {
+                        const itemsResponse = await getAllOrdersItems(order.order_id);
+                        const orderWithItems = { ...order, totalItems: itemsResponse.data.length };
+                        return orderWithItems;
+                    } catch (error) {
+                        console.error(`Error fetching items for order ${order.order_id}:`, error);
+                        return order;
+                    }
                 })
             );
             setOrders(ordersWithItems);
-        }).catch(error => {
-            console.error("Error fetching orders:", error);
-        });
+        };
+        fetchOrderItems();
     }, []);
 
-    const calculateTotalItems = (order) => {
-        let totalItems = 0;
-        if (order && order.orderitems) {
-            order.orderitems.forEach(item => {
-                totalItems += item.quantity;
-            });
-        }
-        return totalItems;
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     };
 
     return (
         <div className="container">
-            <div className="orders-container"> {/* Apply styling to this container */}
+            <div className="orders-container">
                 {orders.map((order) => (
                     <div className="order" key={order.order_id}>
-                        <h6>Order ID: {order.order_id}</h6>
-                        {order.orderitems && order.orderitems.length > 0 ? (
+                        <h6 style={{ alignSelf: "flex-start" }}>Order ID: {order.order_id}</h6>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <ul>
-                                <li>Total Items: <span>{calculateTotalItems(order)}</span></li>
-                                <li>Total Price: <span>{order.total_price}</span></li>
-                                <li>Status: <span>{order.status}</span></li>
-                                <li>Created At: <span>{order.date}</span></li>
-                                <button>Show Details</button>
+                                <li>Total Items: <span>{order.totalItems}</span></li>
+                                <li>Total Price: <span>{order.total_price} $</span></li>
+                                <li>Status: <span className={getStatusClassName(order.status)}>{order.status}</span></li>
+                                <li>Created At: <span>{formatDate(order.created_at)}</span></li>
                             </ul>
-                        ) : (
-                            <p>No items found for this order</p>
-                        )}
+                            <Link to={`/order-details/${order.order_id}`}>
+                                <button>Show Details</button>
+                            </Link>
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
     );
+}    
+
+function getStatusClassName(status) {
+    switch (status) {
+        case 'delivered':
+            return 'delivered';
+        case 'pending':
+            return 'pending';
+        case 'shipped':
+            return 'shipped';
+        default:
+            return '';
+    }
 }

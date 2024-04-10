@@ -11,6 +11,7 @@ import Profile from "./Pages/UserProfile/Profile";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
 import AllProducts from "./Pages/Shop/Shop";
 import AllOrders from "./Pages/orders/Orders";
+import OrderItems from "./Pages/OrderItems/OrderItems";
 const LayOut = () => {
   return (
     <>
@@ -61,7 +62,11 @@ const router = createBrowserRouter([
       { 
         path: "orders/",
         element: <AllOrders/>,
-      }
+      },
+      {
+      path: "/order-details/:id",
+      element: <OrderItems/>,
+    },
      
     ],
   },

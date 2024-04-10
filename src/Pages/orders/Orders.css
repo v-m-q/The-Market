@@ -1,14 +1,17 @@
 .orders-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
 .order {
-    border: 2px solid #eac0c0d5;
-    background-color: #f2ededa8;
-    padding: 20px;
-    margin: 10px;
-    width: 100%
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(27, 27, 27, 0.1);
+    margin: 15px auto;
+    padding: 10px;
+    width: 47%;
+    background-color: #ffd9d944;
 }
 
 .order h6 {
@@ -20,10 +23,41 @@
     padding: 0;
 }
 
-.order ul li {
+.order li {
     margin-bottom: 5px;
 }
 
+.delivered, .pending, .shipped {
+    background-color: #61b481a9;
+    font-weight: bold;
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.pending {
+    background-color: #f4433682;
+}
+
+.shipped {
+    background-color: #2196f382;
+}
+
 .order button {
-    margin-top: 10px;
+    background-color: #765671;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.order button:hover {
+    background-color: #765671a8;
+}
+
+@media (max-width: 768px) {
+    .order {
+        width: 100%; 
+    }
 }
