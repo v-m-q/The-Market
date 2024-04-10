@@ -16,10 +16,6 @@ export const searchProducts = (searchTerm) => {
   });
 };
 
-export const ProductsByCategories = (categoryName) => {
-  return axiosInstance.get("/products/search/", {
-    params: {
-      search: categoryName,
-    },
-  });
-};
+export const ProductsByCategories = (CategoryId) => {
+  return axiosInstance.get(`/products/category/${CategoryId}/`);
+}

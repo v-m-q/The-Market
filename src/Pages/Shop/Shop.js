@@ -40,9 +40,10 @@ export default function AllProducts() {
         setSearchTerm(event.target.value);
     };
 
-    const handleCategoryFilter = (categoryName) => { 
-        ProductsByCategories(categoryName) 
+    const handleCategoryFilter = (categoryId) => { 
+        ProductsByCategories(categoryId) 
             .then(response => {
+                console.log(response.data);
                 setProducts(response.data);
             })
             .catch(error => {
@@ -61,8 +62,8 @@ export default function AllProducts() {
                         <div className="categories__accordion">
                             <div className="accordion" id="accordionExample">
                                 {categories.map((category) => (
-                                    <div className="card" key={category.category_id}>
-                                        <div className="card-heading active" onClick={() => handleCategoryFilter(category.name)}>
+                                    <div className="card" key={category.id}>
+                                        <div className="card-heading active" onClick={() => handleCategoryFilter(category.id)}>
                                         <h4 style={{ textTransform: "capitalize", 
                                         textAlign:"center" }}>
                                             <b>{category.name}</b>
