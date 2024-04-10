@@ -7,3 +7,19 @@ export const getProducts = () => {
 export const getAllProducts = () => {
   return axiosInstance.get("/products");
 };
+
+export const searchProducts = (searchTerm) => {
+  return axiosInstance.get("/products/search/", {
+    params: {
+      search: searchTerm
+    }
+  });
+};
+
+export const ProductsByCategories = (categoryName) => {
+  return axiosInstance.get("/products/search/", {
+    params: {
+      search: categoryName,
+    },
+  });
+};

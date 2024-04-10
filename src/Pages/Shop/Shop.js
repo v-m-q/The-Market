@@ -1,45 +1,94 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../APIs/products";
+import { searchProducts, getAllProducts , ProductsByCategories } from "../../APIs/products";
+import { getAllCategories } from "../../APIs/categories"; 
 import Card from "../../Shared/Card/Card";
 
 export default function AllProducts() {
     const [products, setProducts] = useState([]);
-    const [filter, setFilter] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        getAllProducts()
+        getAllCategories()
             .then((data) => {
-                setProducts(data.data);
+                setCategories(data.data);
             })
             .catch((err) => {
-                console.log("Error fetching data:", err);
+                console.log("Error fetching categories:", err);
             });
     }, []);
 
-    const filteredProducts = products.filter(product =>
-        (product.name && product.name.toLowerCase().includes(filter.toLowerCase())) ||
-        (product.description && product.description.toLowerCase().includes(filter.toLowerCase())) ||
-        (product.category_id?.name && product.category_id.name.toLowerCase().includes(filter.toLowerCase()))
-    );
+    useEffect(() => {
+        const fetchProducts = () => {
+            let productsPromise;
+            if (searchTerm === "") {
+                productsPromise = getAllProducts(); 
+            } else {
+                productsPromise = searchProducts(searchTerm); 
+            }
+            productsPromise.then(response => {
+                setProducts(response.data);
+            }).catch(error => {
+                console.error('Error fetching products:', error);
+            });
+        };
 
-    const handleFilterChange = (e) => {
-        setFilter(e.target.value);
+        fetchProducts();
+    }, [searchTerm]);
+
+    const handleSearchInputChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleCategoryFilter = (categoryName) => { 
+        ProductsByCategories(categoryName) 
+            .then(response => {
+                setProducts(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching products by category:', error);
+            });
     };
 
     return (
-        <div>
-            <h2>All Products</h2>
-            <input
-                type="text"
-                placeholder="Search by name, description, or category..."
-                value={filter}
-                onChange={handleFilterChange}
-                className="form-control m-auto my-3 w-25"
-            />
-            <div className="row property__gallery">
-                {filteredProducts.map((product) => (
-                    <Card key={product.product_id} product={product} />
-                ))}
+        <div className="row">
+            <div className="col-lg-3 col-md-3">
+                <div className="shop__sidebar">
+                    <div className="sidebar__categories">
+                        <div className="section-title m-5">
+                            <h4>Categories</h4>
+                        </div>
+                        <div className="categories__accordion">
+                            <div className="accordion" id="accordionExample">
+                                {categories.map((category) => (
+                                    <div className="card" key={category.category_id}>
+                                        <div className="card-heading active" onClick={() => handleCategoryFilter(category.name)}>
+                                        <h4 style={{ textTransform: "capitalize", 
+                                        textAlign:"center" }}>
+                                            <b>{category.name}</b>
+                                        </h4>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="col-lg-9 col-md-9">
+                <input
+                    type="text"
+                    placeholder=" Search...... "
+                    value={searchTerm}
+                    onChange={handleSearchInputChange}
+                    className="form-control ml-0 my-5 w-25"
+                />
+                <div className="row property__gallery">
+                    {products.map((product) => (
+                        <Card key={product.product_id} product={product} />
+                    ))}
+                </div>
             </div>
         </div>
     );

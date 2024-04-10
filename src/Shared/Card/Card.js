@@ -30,22 +30,24 @@ export default function Card({product}) {
                   <ul className="product__hover">
                     <li>
                       <a href="img/product/product-1.jpg" className="image-popup">
-                        <span className="arrow_expand" onclick = {(e)=> showDetails(e,product)}>
-                        <FontAwesomeIcon icon="fa-solid fa-arrows-up-down" />
+                        <span className="arrow_expand" > 
+                        {/* <span className="arrow_expand" onclick = {(e)=> showDetails(e,product)}> */}
+                        {/* <FontAwesomeIcon icon="fa-solid fa-arrows-up-down" /> */}
                         </span>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <span className="icon_heart_alt" onclick = {(e)=> addToWhishList(e,product)}>
-                        <FontAwesomeIcon icon="fa-light fa-heart" />
+                        <span className="icon_heart_alt" > 
+                        {/* <span className="icon_heart_alt" onclick = {(e)=> addToWhishList(e,product)}> */}
+                        {/* <FontAwesomeIcon icon="fa-light fa-heart" /> */}
                         </span>
                       </a>
                     </li>
                     <li>
                       <a href="#" onClick={(e) => addToCart(e, product.product_id)}>
                         <span className="icon_bag_alt">
-                        <FontAwesomeIcon icon="fa-regular fa-cart-shopping" />
+                        {/* <FontAwesomeIcon icon="fa-regular fa-cart-shopping" /> */}
                         </span>
                       </a>
                     </li>
