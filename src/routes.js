@@ -10,6 +10,7 @@ import Wishlist from "./Pages/Wishlist/Wishlist";
 import Profile from "./Pages/UserProfile/Profile";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
 import AllProducts from "./Pages/Shop/Shop";
+import AllOrders from "./Pages/orders/Orders";
 const LayOut = () => {
   return (
     <>
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         path: "/wishlist",
         element: <Wishlist />,
       },
+      { 
+        path: "orders/",
+        element: <AllOrders/>,
+      }
      
     ],
   },

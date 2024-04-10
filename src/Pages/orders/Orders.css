@@ -1,0 +1,29 @@
+.orders-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order {
+    border: 2px solid #eac0c0d5;
+    background-color: #f2ededa8;
+    padding: 20px;
+    margin: 10px;
+    width: 100%
+}
+
+.order h6 {
+    margin-bottom: 10px;
+}
+
+.order ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order ul li {
+    margin-bottom: 5px;
+}
+
+.order button {
+    margin-top: 10px;
+}
