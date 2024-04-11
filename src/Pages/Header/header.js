@@ -14,11 +14,10 @@ export default function Header() {
       <div id="preloder">
         <div className="loader"></div>
       </div>
-
-      <div className="offcanvas-menu-overlay"></div>
-      <div className="offcanvas-menu-wrapper">
-        <div className="offcanvas__close">+</div>
-        <ul className="offcanvas__widget">
+      <div class="offcanvas-menu-overlay"></div>
+      <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
           <li>
             <span className="icon_search search-switch"></span>
           </li>
@@ -40,9 +39,7 @@ export default function Header() {
           </a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div className="offcanvas__auth">
-          <a>Login</a>
-          <a>Register</a>
+        <div class="offcanvas__auth">
         </div>
       </div>
 
@@ -101,11 +98,11 @@ export default function Header() {
                 </ul>
               </nav>
             </div>
-            <div className="col-lg-3">
-              <div className="header__right">
-                <div className="header__right__auth">
-                  <a href="#">Login</a>
-                  <a href="#">Register</a>
+            <div class="col-lg-3">
+              <div class="header__right">
+                <div class="header__right__auth">
+                  <Link  to="login">Login</Link>
+                  <Link to="signup">Register</Link>
                 </div>
                 <ul className="header__right__widget">
                   <li>

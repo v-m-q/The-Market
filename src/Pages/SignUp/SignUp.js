@@ -3,31 +3,32 @@ import { useFormik } from "formik";
 import SignUpSchema from "../../schemas/registerationSchema";
 import bg from "../../assets/as-an-art-director-create-a-photo-describes-e-commerce-in-a-hologram-laptop-open-in-the-website-wi-978612724.jpeg";
 import axiosInstance from "../../APIs/Axios";
+import { flushSync } from "react-dom";
 const SignUp = () => {
-   const formRef = useRef();
    const [registrationMessage, setRegistrationMessage] = useState("");
    const [errorMessage, setErrorMessage] = useState("");
-
    const onSubmit = (values, actions) => {
      axiosInstance
-       .post("/account/signup", values) 
-       .then((res) => {
-         setRegistrationMessage("Registered successfully!");
-         setErrorMessage("");
-         actions.resetForm();
-       })
-       .catch((err) => {
+     .post("/account/signup", values) 
+     .then((res) => {
+       setRegistrationMessage("Registered successfully!");
+       setErrorMessage( "" );
+         actions.resetForm({values:""})
+        })
+        .catch((err) => {
+         console.log(values)
          if (err.response && err.response.status === 400) {
            setErrorMessage("This email already exists");
            setRegistrationMessage("");
          } else {
            setErrorMessage("An error occurred!");
-           setRegistrationMessage("");
+           setRegistrationMessage( "" );
+           console.log(err)
          }
        });
    };
 
-   const { errors, handleChange, touched, handleBlur, handleSubmit } =
+   const { errors, values, handleChange, touched, isSubmitting ,handleBlur, handleSubmit } =
      useFormik({
        initialValues: {
          email: "",
@@ -56,15 +57,10 @@ const SignUp = () => {
                 Become part of our family! Register today and engage with us
                 through reviews, ratings, and more.
               </p>
-              <form
-                action="#"
-                method="post"
-                onSubmit={handleSubmit}
-                ref={formRef}
-              >
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group first">
+              <form autoComplete="off" onSubmit={handleSubmit}>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group first">
                       <label for="fname">First Name</label>
                       <input
                         autoComplete="off"
@@ -75,6 +71,7 @@ const SignUp = () => {
                         name="first_name"
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        value={values.first_name}
                       />
                       {errors.first_name && touched.first_name ? (
                         <p className="text-danger">{errors.first_name}</p>
@@ -83,9 +80,9 @@ const SignUp = () => {
                       )}
                     </div>
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group first">
-                      <label for="lname">Last Name</label>
+                  <div class="col-md-6">
+                    <div class="form-group first">
+                      <label for="last_name">Last Name</label>
                       <input
                         autoComplete="off"
                         type="text"
@@ -93,6 +90,7 @@ const SignUp = () => {
                         placeholder="e.g. Smith"
                         id="last_name"
                         name="last_name"
+                        value={values.last_name}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
@@ -115,6 +113,7 @@ const SignUp = () => {
                         placeholder="e.g. john@your-domain.com"
                         id="email"
                         name="email"
+                        value={values.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
@@ -133,10 +132,11 @@ const SignUp = () => {
                       <input
                         autoComplete="off"
                         type="text"
-                        className="form-control"
-                        placeholder="00000000000"
+                        class="form-control"
+                        placeholder="000 000 000 00"
                         id="phone"
                         name="phone"
+                        value={values.phone}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
@@ -157,6 +157,7 @@ const SignUp = () => {
                         placeholder="street city"
                         id="address"
                         name="address"
+                        value={values.address}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
@@ -179,6 +180,7 @@ const SignUp = () => {
                         placeholder="Your Password"
                         id="password"
                         name="password"
+                        value={values.password}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
@@ -198,7 +200,7 @@ const SignUp = () => {
                         className="form-control"
                         placeholder="Your Password"
                         id="confirm_password"
-                        name="confirm_password"
+                        value={values.confirm_password}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
@@ -210,26 +212,9 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="d-flex mb-5 mt-4 align-items-center">
-                  <div className="d-flex align-items-center">
-                    <label className="control control--checkbox mb-0">
-                      <span className="caption">
-                        Creating an account means you're okay with our{" "}
-                        <a href="#">Terms and Conditions</a> and our{" "}
-                        <a href="#">Privacy Policy</a>.
-                      </span>
-                      <input type="checkbox" checked="checked" />
-                      <div className="control__indicator"></div>
-                    </label>
-                  </div>
-                </div>
-
-                <input
-                  type="submit"
-                  value="Register"
-                  className="btn px-5 btn-primary"
-                />
+                <button type="submit" class="btn px-5 btn-primary">
+                  Register
+                </button>
                 {registrationMessage && (
                   <p className="alert alert-success m-t-5">
                     {registrationMessage}
