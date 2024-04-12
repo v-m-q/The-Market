@@ -116,7 +116,6 @@ export default function AllProducts() {
                         }}
                       >
                         <b>{category.name}</b>
-                        <b>{category.name}</b>
                       </h4>
                     </div>
                   </div>
