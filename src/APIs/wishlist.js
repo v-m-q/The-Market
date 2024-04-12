@@ -29,3 +29,12 @@ export const removeProductsFromWishlist = (productId) => {
     },
   });
 };
+
+export const getWishlistProductsForPage = (url) => {
+  return axiosInstance.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("Token")}`,
+    },
+  });
+};

@@ -19,3 +19,12 @@ export const getAllOrdersItems = (orderId) => {
     },
   });
 };
+export const getOrdersForPage = (url) => {
+  const token = localStorage.getItem("token");
+  return axiosInstance.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
