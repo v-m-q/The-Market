@@ -41,7 +41,8 @@ export default function AllProducts() {
             })
           );
         } else {
-          productsPromise = await searchProducts(searchTerm);
+          productsPromise = await searchProducts( searchTerm );
+          setProducts(productsPromise.data.results);
         }
       } catch (err) {
         console.error("Error fetching products by category:", err);
@@ -85,7 +86,7 @@ export default function AllProducts() {
   const handleCategoryFilter = (categoryId) => {
     ProductsByCategories(categoryId)
       .then((response) => {
-        setProducts(response.data);
+        setProducts(response.data.results);
       })
       .catch((error) => {
         console.error("Error fetching products by category:", error);
