@@ -20,9 +20,9 @@ export default function AllOrders() {
       try {
         const ordersData = await getAllOrders();
         const ordersWithTotalItems = await Promise.all(
-          ordersData.data.orders.map(async (order) => ({
+          ordersData.data.results.map(async (order) => ({
             ...order,
-            totalItems: await fetchTotalItems(order.order_id),
+            totalItems: await fetchTotalItems(order.id),
           }))
         );
         setOrders(ordersWithTotalItems);
@@ -92,9 +92,9 @@ export default function AllOrders() {
     <div className="container">
       <div className="orders-container">
         {orders.map((order) => (
-          <div className="order" key={order.order_id}>
+          <div className="order" key={order.id}>
             <h6 style={{ alignSelf: "flex-start" }}>
-              Order Number: {order.order_id}
+              Order Number: {order.id}
             </h6>
             <div
               style={{
@@ -122,7 +122,7 @@ export default function AllOrders() {
               </ul>
               <Link
                 className="button"
-                to={`/order-details/${order.order_id}`}
+                to={`/order-details/${order.id}`}
               >
                 Show Items
               </Link>

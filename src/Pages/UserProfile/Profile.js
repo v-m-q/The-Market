@@ -26,7 +26,7 @@ const Profile = () => {
   };
   const logOut = () => {
     localStorage.removeItem( "Token" ), localStorage.removeItem( "refreshToken" );
-    navigator( '/products' );
+    navigator( '/' );
   }
   return (
     <div className="container">

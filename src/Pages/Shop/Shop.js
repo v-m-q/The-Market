@@ -33,6 +33,7 @@ export default function AllProducts() {
         if (searchTerm === "") {
           productsPromise = await getAllProducts();
           console.log(productsPromise.data)
+          
           setProducts(productsPromise.data.results);
           dispatch(
             changePage({
@@ -42,7 +43,14 @@ export default function AllProducts() {
           );
         } else {
           productsPromise = await searchProducts( searchTerm );
-          setProducts(productsPromise.data.results);
+          var arr = productsPromise.data.results
+          for (var key in productsPromise.data.results) {
+            if (arr.hasOwnProperty(key)) {
+                arr[key].thumbnail = arr[key].thumbnail.replace("http://localhost:8000", "");
+            }
+          }
+          // console.log("arr============"+arr);
+          setProducts(arr);
         }
       } catch (err) {
         console.error("Error fetching products by category:", err);
@@ -136,7 +144,7 @@ export default function AllProducts() {
         />
         <div className="row property__gallery">
           {products.map((product) => (
-            <Card key={product.product_id} product={product} />
+            <Card key={product.id} product={product} />
           ))}
         </div>
       </div>

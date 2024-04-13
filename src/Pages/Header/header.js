@@ -62,6 +62,11 @@ export default function Header() {
                       Shop
                     </Link>
                   </li>
+                  <li class="">
+                    <Link to='/orders' >
+                      Orders
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </div>

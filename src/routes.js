@@ -5,25 +5,16 @@ import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 import ProductsList from "./Shared/ProductsList/ProductList";
 import ServicesSection from "./Pages/ServicesSection/CategoriesSection";
 import Footer from "./Pages/Footer/footer";
-import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
 import Wishlist from "./Pages/Wishlist/Wishlist";
-import Profile from "./Pages/UserProfile/Profile";
-import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
-
-import Products from "./Shared/ProductsList/ProductList";;
-import Login from "./Pages/Login/Login";
-import SignUp from "./Pages/SignUp/SignUp";
-import Wishlist from "./Pages/Wishlist/Wishlist";
-
 import Profile from "./Pages/UserProfile/Profile";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
 import AllProducts from "./Pages/Shop/Shop";
 import AllOrders from "./Pages/orders/Orders";
 import OrderItems from "./Pages/OrderItems/OrderItems";
 
-const LayOut = () => {
+const Layout = () => {
   return (
     <>
       <Header />
@@ -41,18 +32,13 @@ const router = createBrowserRouter([
       {
         path: "/",
         element:  <> <CategoriesSection /> <ProductsList /> <ServicesSection/> </>
-        // element:  <> <TestComp /> </>
       },
-      // {
-      //   path: "/products",
-      //   element: <Products />,
-      // },
-      // {
-      //   path: "/products/:id",
-      //   element: <ProductDetails />,
-      // },
       {
-        path: "cart",
+        path: "/shop",
+        element: <AllProducts />,
+      },
+      {
+        path: "/cart",
         element: <ShoppingCart />,
       },
       {
@@ -68,15 +54,15 @@ const router = createBrowserRouter([
         element: <Profile/>,
       },
       {
-        path: "wishlist",
+        path: "/wishlist",
         element: <Wishlist />,
       },
       {
-        path: "updateprofile",
+        path: "/updateprofile",
         element: <UpdateProfile />,
       },
       { 
-        path: "orders/",
+        path: "/orders",
         element: <AllOrders/>,
       },
       {

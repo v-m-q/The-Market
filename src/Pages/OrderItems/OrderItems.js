@@ -42,10 +42,12 @@ export default function OrderItemsPage() {
 
     fetchProductDetailsForOrderItems();
   }, [orderItems]);
+  
+  const base_URL = "http://127.0.0.1:8000";
 
   return (
     <>
-      <h1>Order Items for Order Number: {orderId}</h1>
+      <h2>Order Items for Order Number: {orderId}</h2>
 
       <section className="shop-cart spad">
         <div className="container">
@@ -67,7 +69,10 @@ export default function OrderItemsPage() {
                         <td>
                           {productDetails[item.product] ? (
                             <img
-                              src={productDetails[item.product].thumbnail}
+                              // src={productDetails[item.product].thumbnail}
+                              src={`${base_URL}/${productDetails[item.product].thumbnail}`} 
+                              width={'140px'} 
+                              style={{'border-radius': '15px' }}
                               alt="Product Thumbnail"
                             />
                           ) : (
