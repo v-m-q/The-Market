@@ -97,7 +97,7 @@ export default function AllOrders() {
         {orders.map((order) => (
           <div className="order" key={order.order_id}>
             <h6 style={{ alignSelf: "flex-start" }}>
-              Order ID: {order.order_id}
+              Order Number: {order.order_id}
             </h6>
             <div
               style={{
@@ -129,7 +129,6 @@ export default function AllOrders() {
             </div>
           </div>
         ))}
-      </div>
       <nav
         aria-label="..."
         className="col-lg-9 col-md-9 d-flex justify-content-center mt-3 w-100"
@@ -147,6 +146,7 @@ export default function AllOrders() {
           </li>
         </ul>
       </nav>
+      </div>
     </div>
   );
 }
