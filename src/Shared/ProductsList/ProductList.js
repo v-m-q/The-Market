@@ -9,7 +9,7 @@ export default function ProductsList({product}) {
     getProducts()
       .then((data) => {
         setProducts(data.data);
-        // console.log(data.data)
+        console.log(data.data)
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -17,17 +17,17 @@ export default function ProductsList({product}) {
   return (
     
     <>
-    <section class="product spad">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4 col-md-4">
-              <div class="section-title">
+    <section className="product spad">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-4 col-md-4">
+              <div className="section-title">
                 <h4>New product</h4>
               </div>
             </div>
-            <div class="col-lg-8 col-md-8">
-              <ul class="filter__controls">
-                <li class="active" data-filter="*">
+            <div className="col-lg-8 col-md-8">
+              <ul className="filter__controls">
+                <li className="active" data-filter="*">
                   All
                 </li>
                 <li data-filter=".women">Women’s</li>
@@ -38,7 +38,7 @@ export default function ProductsList({product}) {
               </ul>
             </div>
           </div>
-          <div class="row property__gallery">
+          <div className="row property__gallery">
             {products.latest_products?.map((product) => (
               <Card product={product}></Card>
             ))}

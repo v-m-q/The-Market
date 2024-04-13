@@ -12,7 +12,18 @@ import Wishlist from "./Pages/Wishlist/Wishlist";
 import Profile from "./Pages/UserProfile/Profile";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
 
-function Layout() {
+import Products from "./Shared/ProductsList/ProductList";;
+import Login from "./Pages/Login/Login";
+import SignUp from "./Pages/SignUp/SignUp";
+import Wishlist from "./Pages/Wishlist/Wishlist";
+
+import Profile from "./Pages/UserProfile/Profile";
+import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
+import AllProducts from "./Pages/Shop/Shop";
+import AllOrders from "./Pages/orders/Orders";
+import OrderItems from "./Pages/OrderItems/OrderItems";
+
+const LayOut = () => {
   return (
     <>
       <Header />
@@ -64,6 +75,15 @@ const router = createBrowserRouter([
         path: "updateprofile",
         element: <UpdateProfile />,
       },
+      { 
+        path: "orders/",
+        element: <AllOrders/>,
+      },
+      {
+      path: "/order-details/:id",
+      element: <OrderItems/>,
+    },
+     
     ],
   },
 ]);

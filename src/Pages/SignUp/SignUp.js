@@ -43,17 +43,17 @@ const SignUp = () => {
        onSubmit,
      });
   return (
-    <div class="d-lg-flex half">
+    <div className="d-lg-flex half">
       <div
-        class="bg order-1 order-md-2"
+        className="bg order-1 order-md-2"
         style={{ backgroundImage: `url(${bg})` }}
       ></div>
-      <div class="contents order-2 order-md-1">
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-7 py-5">
+      <div className="contents order-2 order-md-1">
+        <div className="container">
+          <div className="row align-items-center justify-content-center">
+            <div className="col-md-7 py-5">
               <h3>Register</h3>
-              <p class="mb-4">
+              <p className="mb-4">
                 Become part of our family! Register today and engage with us
                 through reviews, ratings, and more.
               </p>
@@ -65,7 +65,7 @@ const SignUp = () => {
                       <input
                         autoComplete="off"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="e.g. John"
                         id="first_name"
                         name="first_name"
@@ -86,7 +86,7 @@ const SignUp = () => {
                       <input
                         autoComplete="off"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="e.g. Smith"
                         id="last_name"
                         name="last_name"
@@ -102,14 +102,14 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group first">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group first">
                       <label for="email">Email Address</label>
                       <input
                         autoComplete="off"
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         placeholder="e.g. john@your-domain.com"
                         id="email"
                         name="email"
@@ -125,9 +125,9 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group first">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group first">
                       <label for="phone">Phone Number</label>
                       <input
                         autoComplete="off"
@@ -147,13 +147,13 @@ const SignUp = () => {
                       )}
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group first">
+                  <div className="col-md-6">
+                    <div className="form-group first">
                       <label for="address">Address</label>
                       <input
                         autoComplete="off"
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="street city"
                         id="address"
                         name="address"
@@ -169,14 +169,14 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group last mb-3">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group last mb-3">
                       <label for="password">Password</label>
                       <input
                         autoComplete="off"
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your Password"
                         id="password"
                         name="password"
@@ -191,13 +191,13 @@ const SignUp = () => {
                       )}
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group last mb-3">
+                  <div className="col-md-6">
+                    <div className="form-group last mb-3">
                       <label for="confirm-password">Re-type Password</label>
                       <input
                         autoComplete="off"
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your Password"
                         id="confirm_password"
                         value={values.confirm_password}

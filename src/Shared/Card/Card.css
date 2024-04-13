@@ -1,0 +1,10 @@
+.out , .in{
+    background-color: brown;
+    padding: 7px;
+    margin: 10px;
+    border-radius: 0px 10px 17px 0px ;
+    color: bisque;
+}
+.in{
+    background-color: blue;
+}

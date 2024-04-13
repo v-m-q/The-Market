@@ -85,9 +85,9 @@
 
         // remove classes if set
         if (settings.removeClasses) {
-            $this.mobileNav.removeAttr('class');
+            $this.mobileNav.removeAttr('className');
             $this.mobileNav.find('*').each(function (i, e) {
-                $(e).removeAttr('class');
+                $(e).removeAttr('className');
             });
         }
 
@@ -99,7 +99,7 @@
             });
         }
 
-        // styling class for the button
+        // styling className for the button
         iconClass = prefix + '_icon';
 
         if (settings.label === '') {
@@ -111,19 +111,19 @@
         }
 
         // create menu bar
-        $this.mobileNav.attr('class', prefix + '_nav');
-        menuBar = $('<div class="' + prefix + '_menu"></div>');
+        $this.mobileNav.attr('className', prefix + '_nav');
+        menuBar = $('<div className="' + prefix + '_menu"></div>');
 		if (settings.brand !== '') {
-			var brand = $('<div class="' + prefix + '_brand">'+settings.brand+'</div>');
+			var brand = $('<div className="' + prefix + '_brand">'+settings.brand+'</div>');
 			$(menuBar).append(brand);
 		}
         $this.btn = $(
-            ['<' + settings.parentTag + ' aria-haspopup="true" role="button" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
-                '<span class="' + prefix + '_menutxt">' + settings.label + '</span>',
-                '<span class="' + iconClass + '">',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
+            ['<' + settings.parentTag + ' aria-haspopup="true" role="button" tabindex="0" className="' + prefix + '_btn ' + prefix + '_collapsed">',
+                '<span className="' + prefix + '_menutxt">' + settings.label + '</span>',
+                '<span className="' + iconClass + '">',
+                    '<span className="' + prefix + '_icon-bar"></span>',
+                    '<span className="' + prefix + '_icon-bar"></span>',
+                    '<span className="' + prefix + '_icon-bar"></span>',
                 '</span>',
             '</' + settings.parentTag + '>'
             ].join('')
@@ -167,7 +167,7 @@
                 });
 
                 var wrapElement = $(
-                    '<' + settings.parentTag + ' role="menuitem" aria-haspopup="true" tabindex="-1" class="' + prefix + '_item"/>'
+                    '<' + settings.parentTag + ' role="menuitem" aria-haspopup="true" tabindex="-1" className="' + prefix + '_item"/>'
                 );
 
                 // wrap item text with tag and add classes unless we are separating parent links
@@ -175,7 +175,7 @@
                     var $wrap = $(nodes).wrapAll(wrapElement).parent();
                     $wrap.addClass(prefix+'_row');
                 } else
-                    $(nodes).wrapAll('<span class="'+prefix+'_parent-link '+prefix+'_row"/>').parent();
+                    $(nodes).wrapAll('<span className="'+prefix+'_parent-link '+prefix+'_row"/>').parent();
 
                 if (!settings.showChildren) {
                     item.addClass(prefix+'_collapsed');
@@ -186,7 +186,7 @@
                 item.addClass(prefix+'_parent');
 
                 // create parent arrow. wrap with link if parent links and separating
-                var arrowElement = $('<span class="'+prefix+'_arrow">'+(settings.showChildren?settings.openedSymbol:settings.closedSymbol)+'</span>');
+                var arrowElement = $('<span className="'+prefix+'_arrow">'+(settings.showChildren?settings.openedSymbol:settings.closedSymbol)+'</span>');
 
                 if (settings.allowParentLinks && !settings.nestedParentLinks && containsAnchor)
                     arrowElement = arrowElement.wrap(wrapElement).parent();

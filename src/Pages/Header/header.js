@@ -4,28 +4,28 @@ export default function Header() {
   return (
     <>
       <div id="preloder">
-        <div class="loader"></div>
+        <div className="loader"></div>
       </div>
       <div class="offcanvas-menu-overlay"></div>
       <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__close">+</div>
         <ul class="offcanvas__widget">
           <li>
-            <span class="icon_search search-switch"></span>
+            <span className="icon_search search-switch"></span>
           </li>
           <li>
             <a href="#">
-              <span class="icon_heart_alt"></span>
-              <div class="tip">29</div>
+              <span className="icon_heart_alt"></span>
+              <div className="tip">29</div>
             </a>
           </li>
           <li>
             <a href="./cart.html">
-              <span class="icon_bag_alt"></span>
+              <span className="icon_bag_alt"></span>
             </a>
           </li>
         </ul>
-        <div class="offcanvas__logo">
+        <div className="offcanvas__logo">
           <a href="./index.html">
             <img src="img/logo.png" alt="" />
           </a>
@@ -35,11 +35,11 @@ export default function Header() {
         </div>
       </div>
 
-      <header class="header">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xl-3 col-lg-2">
-              <div class="header__logo">
+      <header className="header">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xl-3 col-lg-2">
+              <div className="header__logo">
                 <a href="./index.html">
                   <img
                     src="img/logoo.png"
@@ -49,8 +49,8 @@ export default function Header() {
                 </a>
               </div>
             </div>
-            <div class="col-xl-6 col-lg-7">
-              <nav class="header__menu">
+            <div className="col-xl-6 col-lg-7">
+              <nav className="header__menu">
                 <ul>
                   <li class="">
                     <Link to='/' >
@@ -103,8 +103,8 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <div class="canvas__open">
-            <i class="fa fa-bars"></i>
+          <div className="canvas__open">
+            <i className="fa fa-bars"></i>
           </div>
         </div>
       </header>
