@@ -11,7 +11,7 @@ export const getProductsByWishlist = () => {
 
 export const addProductsToWishlist = (productId) => {
   return axiosInstance.post(
-    "/wishlist/add-to-wishlist/",
+    "/wishlist/add-to-wishlist",
     {
       product: productId,
     },
@@ -25,7 +25,7 @@ export const addProductsToWishlist = (productId) => {
 };
 
 export const removeProductsFromWishlist = (productId) => {
-  return axiosInstance.delete(`/wishlist/remove-from-wishlist/`, {
+  return axiosInstance.delete(`/wishlist/remove-from-wishlist`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("Token")}`,

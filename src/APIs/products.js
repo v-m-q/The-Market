@@ -47,13 +47,6 @@ export const searchProducts = (searchTerm) => {
   });
 };
 
-export const ProductsByCategories = (CategoryId) => {
-  return axiosInstance.get(`/products/category/${CategoryId}/`);
-}
 export const nextProducts = ( url )=>{
   return axios.get(url)
  }
-
- export const getProductDetails = (id) => {
-  return axiosInstance.get(`/products/${id}/`);
-};
