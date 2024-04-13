@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  const redirectToWishList = () => {
+    navigate("/wishlist");
+  };
+
   return (
     <>
       <div id="preloder">
@@ -88,6 +97,12 @@ export default function Header() {
                     <Link to="/logout">
                       <span class="arrow_right_alt"></span>
                     </Link>
+                    <FontAwesomeIcon
+                      icon={farHeart}
+                      onClick={() => {
+                        redirectToWishList();
+                      }}
+                    />
                   </li>
                   
                   <li>

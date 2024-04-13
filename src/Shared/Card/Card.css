@@ -1,5 +1,5 @@
 .out , .in{
-    background-color: brown;
+    background-color: #CA1515;
     padding: 7px;
     margin: 10px;
     border-radius: 0px 10px 17px 0px ;
@@ -7,4 +7,11 @@
 }
 .in{
     background-color: blue;
+}
+.product-header{
+    cursor: pointer;
+    font-size: 20px;
+}
+.product-header:hover{
+    color: #CA1515;
 }
