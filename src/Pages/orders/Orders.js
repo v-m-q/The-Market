@@ -11,7 +11,7 @@ import "./Orders.css";
 
 export default function AllOrders() {
   const [orders, setOrders] = useState([]);
-  const [initialFetchCompleted] = useState(false);
+  // const [initialFetchCompleted] = useState(false);
   const next = useSelector((state) => state.pages.next);
   const previous = useSelector((state) => state.pages.previous);
   useEffect(() => {
@@ -123,8 +123,8 @@ export default function AllOrders() {
                   Created At: <span>{formatDate(order.created_at)}</span>
                 </li>
               </ul>
-              <Link to={`/order-details/${order.order_id}`}>
-                <button>Show Details</button>
+              <Link className="button" to={`/order-details/${order.order_id}`}>
+                    Show Items
               </Link>
             </div>
           </div>

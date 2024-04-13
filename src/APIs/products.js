@@ -22,3 +22,7 @@ export const ProductsByCategories = (CategoryId) => {
 export const nextProducts = ( url )=>{
   return axios.get(url)
  }
+
+ export const getProductDetails = (id) => {
+  return axiosInstance.get(`/products/${id}/`);
+};
