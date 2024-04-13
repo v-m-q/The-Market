@@ -1,27 +1,36 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import Header from "./Pages/Header/header";
-import Footer from "./Shared/Footer/Footer";
+import CategoriesSection from "./Pages/CategoriesSection/CategoriesSection";
+import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
+import ProductsList from "./Shared/ProductsList/ProductList";
+import ServicesSection from "./Pages/ServicesSection/CategoriesSection";
+import Footer from "./Pages/Footer/footer";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
-import Products from "./Shared/ProductsList/ProductList";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
+import Wishlist from "./Pages/Wishlist/Wishlist";
 import Profile from "./Pages/UserProfile/Profile";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
-const LayOut = () => {
+
+function Layout() {
   return (
     <>
       <Header />
       <Outlet />
       <Footer />
     </>
-  );
-};
+  )
+}
+
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <LayOut />,
+    element: <Layout />,
     children: [
+      {
+        path: "/",
+        element:  <> <CategoriesSection /> <ProductsList /> <ServicesSection/> </>
+      },
       {
         path: "/products",
         element: <Products />,
@@ -29,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "cart",
+        element: <ShoppingCart />,
       },
       {
         path: "/login",
@@ -43,7 +56,11 @@ const router = createBrowserRouter([
         element: <Profile/>,
       },
       {
-        path: "/updateprofile",
+        path: "wishlist",
+        element: <Wishlist />,
+      },
+      {
+        path: "updateprofile",
         element: <UpdateProfile />,
       },
     ],

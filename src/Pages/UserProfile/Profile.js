@@ -177,7 +177,7 @@ const Profile = () => {
                     <h6 className="mb-0">Address</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {user ? user[0].address : ""}
+                  { user ? user[0].address : " "}
                   </div>
                 </div>
                 <hr />

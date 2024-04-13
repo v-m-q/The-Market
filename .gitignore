@@ -9,6 +9,12 @@ public/img
 public/sass
 public/Source
 src/Pages/img
+
+/public
+/public/css
+/public/js
+src/Pages/img
+
 # testing
 /coverage
 

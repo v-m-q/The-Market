@@ -9,8 +9,18 @@ export default function Card({product}) {
       .then(() => {
         alert('Added to cart successfully')
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => alert('Auth error : --'));
   }
+
+  function addToWishlist(e, id) {
+    e.preventDefault();
+    addProductsToWishlist(id)
+      .then(() => {
+        alert('Added to wishlist successfully')
+      })
+      .catch((err) => alert('Auth error : --'));
+  }
+
 
   return (
     
@@ -30,12 +40,12 @@ export default function Card({product}) {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="#" onClick={(e) => addToWishlist(e, product.id)}>
                         <span class="icon_heart_alt"></span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" onClick={(e) => addToCart(e, product.product_id)}>
+                      <a href="#" onClick={(e) => addToCart(e, product.id)}>
                         <span class="icon_bag_alt"></span>
                       </a>
                     </li>
