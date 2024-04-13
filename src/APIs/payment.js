@@ -15,3 +15,19 @@ export const stripeCheckout = (cartTotalAmount) => {
     }
   );
 };
+
+
+export const orderCheckout = (total_price) => {
+  return axiosInstance.post(
+    `/cart/checkout/`,
+    {
+      total_price: total_price
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+      },
+    }
+  );
+};

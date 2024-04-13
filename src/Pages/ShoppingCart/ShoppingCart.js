@@ -1,7 +1,7 @@
 import { getCartData } from "../../APIs/cart";
 import { useState, useEffect } from "react";
 import CartItem from "../../Shared/CartItem/CartItem";
-import { stripeCheckout } from "../../APIs/payment";
+import { stripeCheckout, orderCheckout } from "../../APIs/payment";
 
 export default function ShoppingCart() {
   const [cartProducts, setCartProducts] = useState([]);
@@ -28,15 +28,44 @@ export default function ShoppingCart() {
 
   };
 
+  // const forwardToStripe = (e) => {
+  //   e.preventDefault();
+  //   stripeCheckout(totalPrice)
+  //     .then((response) => {
+  //       // redirect to stripe checkout page.
+  //       orderCheckout(totalPrice)
+  //       .then((response) => {
+  //         window.location.href = response.data.payload;
+  //       })
+  //     })
+  //     .catch((err) => alert("error: something wrong happened"));
+  // };
+
+     
   const forwardToStripe = (e) => {
     e.preventDefault();
     stripeCheckout(totalPrice)
-      .then((response) => {
-        // redirect to stripe checkout page.
-        window.location.href = response.data.payload;
+      .then((stripeResponse) => {
+        // Call your backend to prepare the checkout
+        window.location.href = stripeResponse.data.payload;
+        orderCheckout(totalPrice)
+          .then((response) => {
+            // Redirect to Stripe checkout page after successful preparation
+            alert('added')
+          })
+          .catch((orderError) => {
+            // Handle errors from the orderCheckout endpoint
+            console.error("Error preparing order:", orderError);
+            alert("Error preparing order. Please try again.");
+          });
       })
-      .catch((err) => alert("error: something wrong happened"));
-  };
+      .catch((stripeError) => {
+        // Handle errors from the stripeCheckout endpoint
+        console.error("Error with Stripe:", stripeError);
+        alert("Error with Stripe. Please try again.");
+      });
+};
+
 
   return (
     <>
