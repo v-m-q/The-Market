@@ -10,7 +10,6 @@ export const stripeCheckout = (cartTotalAmount) => {
     {
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
       },
     }
   );
@@ -26,7 +25,7 @@ export const orderCheckout = (total_price) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+        Authorization: `Bearer ${localStorage.getItem("Token")}`,
       },
     }
   );

@@ -12,7 +12,7 @@ export const addProductsToWishlist = (p_id) => {
   {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+      Authorization: `Bearer ${localStorage.getItem("Token")}`,
     },
   });
 };
