@@ -1,7 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import router from "./routes";
-import store from "./store/store";
 
 function App() {
   /* localStorage.setItem(
@@ -33,11 +32,7 @@ function App() {
       break;
   }*/
 
-  return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -16,7 +16,7 @@ const Wishlist = () => {
     } else {
       getProductsByWishlist()
         .then((res) => {
-          setWishitems(res.data);
+          setWishitems(res.data.results);
         })
         .catch((err) => console.log(err));
     }
@@ -27,7 +27,7 @@ const Wishlist = () => {
       .then((res) => {
         getProductsByWishlist()
           .then((res) => {
-            setWishitems(res.data);
+            setWishitems(res.data.results);
           })
           .catch((err) => console.log(err));
       })

@@ -24,27 +24,6 @@ export default function Card({ product }) {
       })
       .catch((err) => alert("Auth error : --"));
   }
-  /*
-  useEffect(() => {
-    const checkIfInWishlist = () => {
-      try {
-        const res = getProductsByWishlist();
-        console.log("Wishlist response:", res);
-        const wishlistProducts = res.data;
-
-        const isInWishlist = wishlistProducts.some(
-          (wishlistProduct) => wishlistProduct.productId === product.productId
-        );
-
-        setIsInWishlist(isInWishlist);
-      } catch (error) {
-        console.error("Error fetching wishlist:", error);
-      }
-    };
-
-    checkIfInWishlist();
-  }, [product.productId]);
-*/
 
   if (!product) {
     return null;

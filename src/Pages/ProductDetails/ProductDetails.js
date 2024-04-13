@@ -4,7 +4,6 @@ import {
   ProductsByCategories,
   getProductDetails,
   rateProducts,
-  searchForProducts,
 } from "../../APIs/products";
 import RatingComponent from "../../Shared/Rating/Rating";
 import Card from "../../Shared/Card/Card";
@@ -20,12 +19,11 @@ const ProductDetails = () => {
   const [product, setProduct] = useState([]);
   const [rating, setRating] = useState(0);
   const params = useParams();
-  console.log(params);
 
-  const handleRating = (newRating) => {
-    const productRating = setRating(newRating);
-    rateProducts(product.product_id, productRating)
-      .then((res) => setRating(res))
+  const handleRating = (event, newRating) => {
+    setRating(newRating);
+    rateProducts(product.product_id, newRating)
+      .then((res) => console.log(res.data.value))
       .catch((err) => console.log(err));
   };
 
@@ -35,7 +33,7 @@ const ProductDetails = () => {
         setProduct(res.data);
         ProductsByCategories(res.data.category_id)
           .then((res) => {
-            setproductCategory(res.data);
+            setproductCategory(res.data.results);
           })
           .catch((err) => {
             console.log(err);
@@ -136,18 +134,14 @@ const ProductDetails = () => {
                       </span>
                     </li>
                     <li>
-                      {rating === 0 ? (
-                        <Stack spacing={1}>
-                          <Rating
-                            name="half-rating"
-                            precision={0.5}
-                            value={rating}
-                            onChange={handleRating}
-                          />
-                        </Stack>
-                      ) : (
-                        <Rating name="disabled" value={rating} disabled />
-                      )}
+                      <Stack spacing={1}>
+                        <Rating
+                          name="half-rating"
+                          precision={0.5}
+                          value={rating}
+                          onChange={handleRating}
+                        />
+                      </Stack>
                     </li>
                   </ul>
                 </div>
