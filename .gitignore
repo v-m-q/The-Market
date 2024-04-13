@@ -7,6 +7,12 @@
 
 # testing
 /coverage
+public/css
+public/js
+public/img
+public/fonts
+public/sass
+public/Source
 
 # production
 /build
