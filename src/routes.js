@@ -11,6 +11,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import Wishlist from "./Pages/Wishlist/Wishlist";
 import Profile from "./Pages/UserProfile/Profile";
 import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
+import TestComp from "./Pages/TestComp/TestComp";
 
 function Layout() {
   return (
@@ -30,15 +31,16 @@ const router = createBrowserRouter([
       {
         path: "/",
         element:  <> <CategoriesSection /> <ProductsList /> <ServicesSection/> </>
+        // element:  <> <TestComp /> </>
       },
-      {
-        path: "/products",
-        element: <Products />,
-      },
-      {
-        path: "/products/:id",
-        element: <ProductDetails />,
-      },
+      // {
+      //   path: "/products",
+      //   element: <Products />,
+      // },
+      // {
+      //   path: "/products/:id",
+      //   element: <ProductDetails />,
+      // },
       {
         path: "cart",
         element: <ShoppingCart />,

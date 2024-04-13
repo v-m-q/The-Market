@@ -3,26 +3,23 @@ import login from "../../assets/Sign up-bro.svg";
 import { useFormik } from "formik";
 import LoginSchema from "../../schemas/loginSchema";
 import axiosInstance from "../../APIs/Axios";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [ status, setstatus ] = useState( "" );
  const navigate = useNavigate();
-  const onSubmit = () => {
+  const onsubmit = () => {
     axiosInstance
-      .post( "/account/signin", values )
+      .post("/account/signin", values)
       .then( ( res ) => {
-        localStorage.setItem( "Token", res.data.access );
+        localStorage.setItem("Token", res.data.access);
         localStorage.setItem( "refreshToken", res.data.refresh );
-        setstatus( '' );
-        navigate( '/account' )
+        setstatus('')
+        navigate( '/products' )
       } )
-      .catch( ( err ) => {
-        if (err.code == "ERR_NETWORK") setstatus("An error occured");
-        else setstatus("wrong password or email");
-  });
+      .catch((err) => setstatus(err));
   };
-console.log(``)
+console.log(`status: ${status}`)
   const { values, errors, handleChange, touched, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {
@@ -30,7 +27,7 @@ console.log(``)
         password: "",
       },
       validationSchema: LoginSchema,
-      onSubmit,
+      onSubmit: onsubmit,
     });
 
   return (
@@ -68,6 +65,9 @@ console.log(``)
                 ""
               )}
               <span className="focus-input100"></span>
+              <span className="symbol-input100">
+                <i className="fa fa-envelope" aria-hidden="true"></i>
+              </span>
             </div>
 
             <div
@@ -90,9 +90,12 @@ console.log(``)
                 ""
               )}
               <span className="focus-input100"></span>
+              <span className="symbol-input100">
+                <i className="fa fa-lock" aria-hidden="true"></i>
+              </span>
             </div>
             { status!='' ? (
-              <p className="text-danger">{status}</p>
+              <p className="text-danger"> wrong password or email</p>
             ) : (
               ""
             )}
@@ -110,13 +113,13 @@ console.log(``)
             </div>
 
             <div className="text-center p-t-136">
-              <Link className="txt2" to="/signup">
+              <a className="txt2" href="#">
                 Create your Account
                 <i
                   className="fa fa-long-arrow-right m-l-5"
                   aria-hidden="true"
                 ></i>
-              </Link>
+              </a>
             </div>
           </form>
         </div>
