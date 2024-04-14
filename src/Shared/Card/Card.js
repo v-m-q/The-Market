@@ -17,12 +17,14 @@ export default function Card({ product }) {
   };
 
   function addToCart(e, id) {
-    e.preventDefault();
-    addProductToCart(id)
-      .then(() => {
-        alert("Added to cart successfully");
-      })
-      .catch((err) => alert("Auth error : --"));
+    if (!localStorage.getItem("Token")) {
+      e.preventDefault();
+      addProductToCart(id)
+        .then(() => {
+          alert("Added to cart successfully");
+        })
+        .catch((err) => alert("Auth error : --"));
+    }
   }
 
   if (!product) {
