@@ -17,13 +17,15 @@ export default function Card({ product }) {
   };
 
   function addToCart(e, id) {
-    if (!localStorage.getItem("Token")) {
+    if (localStorage.getItem("Token")) {
       e.preventDefault();
       addProductToCart(id)
         .then(() => {
           alert("Added to cart successfully");
         })
-        .catch((err) => alert("Auth error : --"));
+        .catch((err) => alert("Auth Error : You must login first!"));
+    }else{
+      alert("You must login first!");
     }
   }
 
@@ -55,11 +57,9 @@ export default function Card({ product }) {
                 </a>
               </li>
               <li>
-                <a>
-                  <FontAwesomeIcon
-                    icon={faShoppingBag}
-                    onClick={(e) => addToCart(e, product.id)}
-                  />
+              <a 
+              onClick={(e) => addToCart(e, product.id)}>
+                  <span class="icon_bag_alt"></span>
                 </a>
               </li>
             </ul>
