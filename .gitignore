@@ -4,25 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
-public/fonts
-public/img
-public/sass
-public/Source
 src/Pages/img
 
-/public
-/public/css
-/public/js
-src/Pages/img
 
 # testing
 /coverage
-public/css
-public/js
-public/img
-public/fonts
-public/sass
-public/Source
 
 # production
 /build
