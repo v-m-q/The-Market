@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -22,7 +22,7 @@ const Wishlist = () => {
     } else {
       getProductsByWishlist()
         .then((res) => {
-          setWishitems( res.data );
+          setWishitems( res.data.results );
           dispatch(
             changePage({
               next: productsPromise.data.next,
@@ -75,6 +75,9 @@ const goToPreviousPage = async () => {
     console.log("there is no previous products");
   }
 };
+
+console.log(wishitems);
+
   return (
     <section className="shop-cart spad">
       <div className="container">

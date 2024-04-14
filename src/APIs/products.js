@@ -21,6 +21,8 @@ export const searchForProducts = (categoryId) => {
 };
 
 export const rateProducts = (productId, rating) => {
+  // console.log("productId" + productId);
+  console.log("rating " + rating);
   return axiosInstance.post(
     `/product/${productId}/add-rating/`,
     {

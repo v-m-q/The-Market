@@ -13,6 +13,7 @@ import UpdateProfile from "./Pages/UpdateProfile/UpdateProfile";
 import AllProducts from "./Pages/Shop/Shop";
 import AllOrders from "./Pages/orders/Orders";
 import OrderItems from "./Pages/OrderItems/OrderItems";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 
 const Layout = () => {
   return (
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <AllProducts />,
+      },
+      ,
+      {
+        path: "/products/:id",
+        element: <ProductDetails />,
       },
       {
         path: "/cart",

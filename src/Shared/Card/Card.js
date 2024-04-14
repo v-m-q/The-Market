@@ -29,16 +29,6 @@ export default function Card({ product }) {
     return null;
   }
 
-  function addToWishlist(e, id) {
-    e.preventDefault();
-    addProductsToWishlist(id)
-      .then(() => {
-        alert('Added to wishlist successfully')
-      })
-      .catch((err) => alert('Auth error : --'));
-  }
-
-
   return (
     <>
       <div className="col-lg-3 col-md-4 col-sm-6 mix">
@@ -64,13 +54,13 @@ export default function Card({ product }) {
               </li>
               <li>
                 <span className="icon_heart_alt">
-                  <LikedProduct product={product.product_id} />
+                  <LikedProduct product={product.id} />
                 </span>
               </li>
               <li>
                 <FontAwesomeIcon
                   icon={faShoppingBag}
-                  onClick={(e) => addToCart(e, product.product_id)}
+                  onClick={(e) => addToCart(e, product.id)}
                 />
               </li>
             </ul>
@@ -79,7 +69,7 @@ export default function Card({ product }) {
             <h6>
               <p
                 className="product-header"
-                onClick={() => redirectToProductDetails(product.product_id)}
+                onClick={() => redirectToProductDetails(product.id)}
               >
                 {product.name}
               </p>

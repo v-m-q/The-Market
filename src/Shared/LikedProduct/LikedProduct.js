@@ -24,6 +24,7 @@ const LikedProduct = ({ product }) => {
     if (isInWishlist) {
       removeProductsFromWishlist(productId);
     } else {
+      alert('added to wishlist')
       addProductsToWishlist(productId);
     }
     setIsInWishlist(!isInWishlist);

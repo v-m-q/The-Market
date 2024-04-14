@@ -10,7 +10,7 @@ export const addProductToCart = (p_id) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
       },
     }
   );
@@ -22,7 +22,7 @@ export const getCartData = () => {
   return axiosInstance.get("/cart/", {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("Token")}`,
+      Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
     },
   });
 };
@@ -33,7 +33,7 @@ export const removeFromCartData = (p_id) => {
   return axiosInstance.delete(`/cart/remove/${p_id}/`, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("Token")}`,
+      Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
     },
   });
 };
@@ -49,7 +49,7 @@ export const updateCartProductQuantity = (cart_item_id, quantity) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        Authorization: `Bearer ${localStorage.getItem("auth-token")}`,
       },
     }
   );

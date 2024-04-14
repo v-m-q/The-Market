@@ -10,19 +10,22 @@ import Card from "../../Shared/Card/Card";
 import LikedProduct from "../../Shared/LikedProduct/LikedProduct";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
-import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import "./ProductDetails.css";
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 const ProductDetails = () => {
+  const base_URL = "http://127.0.0.1:8000";
   const [productCategory, setproductCategory] = useState([]);
   const [product, setProduct] = useState([]);
   const [rating, setRating] = useState(0);
   const params = useParams();
 
   const handleRating = (event, newRating) => {
+    console.log("newRating " + newRating);
     setRating(newRating);
-    rateProducts(product.product_id, newRating)
+    rateProducts(product.id, newRating)
       .then((res) => console.log(res.data.value))
       .catch((err) => console.log(err));
   };
@@ -31,6 +34,9 @@ const ProductDetails = () => {
     getProductDetails(params.id)
       .then((res) => {
         setProduct(res.data);
+
+        console.log(res.data);
+
         ProductsByCategories(res.data.category_id)
           .then((res) => {
             setproductCategory(res.data.results);
@@ -55,46 +61,28 @@ const ProductDetails = () => {
               <div className="product__details__pic">
                 <div className="product__details__pic__left product__thumb nice-scroll">
                   <a className="pt active" href="#product-1">
-                    <img src="img/product/details/thumb-1.jpg" alt="" />
+                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
                   </a>
                   <a className="pt" href="#product-2">
-                    <img src="img/product/details/thumb-2.jpg" alt="" />
+                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
                   </a>
                   <a className="pt" href="#product-3">
-                    <img src="img/product/details/thumb-3.jpg" alt="" />
+                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
                   </a>
                   <a className="pt" href="#product-4">
-                    <img src="img/product/details/thumb-4.jpg" alt="" />
+                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
                   </a>
                 </div>
-                <div className="product__details__slider__content">
-                  <div className="product__details__pic__slider owl-carousel">
-                    <img
-                      data-hash="product-1"
-                      className="product__big__img"
-                      src="img/product/details/product-1.jpg"
-                      alt=""
-                    />
-                    <img
-                      data-hash="product-2"
-                      className="product__big__img"
-                      src="img/product/details/product-3.jpg"
-                      alt=""
-                    />
-                    <img
-                      data-hash="product-3"
-                      className="product__big__img"
-                      src="img/product/details/product-2.jpg"
-                      alt=""
-                    />
-                    <img
-                      data-hash="product-4"
-                      className="product__big__img"
-                      src="img/product/details/product-4.jpg"
-                      alt=""
-                    />
+                
+                <div class="product__details__slider__content">
+                      <div class="product__details__pic__slider owl-carousel">
+                          <img src={"http://127.0.0.1:8000//media/1500x500.jpg"} />
+                          <img class="product__big__img" src={`${base_URL}/${product.thumbnail}`} alt="" />
+                          <img class="product__big__img" src="img/product/details/product-3.jpg" alt="" />
+                          <img class="product__big__img" src="img/product/details/product-2.jpg" alt="" />
+                          <img class="product__big__img" src="img/product/details/product-4.jpg" alt="" />
+                      </div>
                   </div>
-                </div>
               </div>
             </div>
             <div className="col-lg-6">
@@ -102,7 +90,7 @@ const ProductDetails = () => {
                 <h3>{product.name}</h3>
                 <h5>
                   Category:{" "}
-                  {product.category_name && product.category_name.name}
+                  {product.category && product.category}
                 </h5>
                 <div>
                   <RatingComponent value={product.avg_rate} />
@@ -113,7 +101,7 @@ const ProductDetails = () => {
                 <div className="product__details__button">
                   <ul>
                     <li>
-                      <LikedProduct product={product.product_id} />
+                      <LikedProduct product={product.id} />
                     </li>
                     <li>
                       <FontAwesomeIcon icon={faShoppingBag} />
@@ -134,6 +122,7 @@ const ProductDetails = () => {
                       </span>
                     </li>
                     <li>
+                    </li>
                       <Stack spacing={1}>
                         <Rating
                           name="half-rating"
@@ -142,7 +131,6 @@ const ProductDetails = () => {
                           onChange={handleRating}
                         />
                       </Stack>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -156,7 +144,7 @@ const ProductDetails = () => {
               </div>
             </div>
             {productCategory.slice(-4).map((productItem) => (
-              <Card key={productItem.product_id} product={productItem} />
+              <Card key={productItem.id} product={productItem} />
             ))}
           </div>
         </div>
