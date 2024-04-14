@@ -7,6 +7,7 @@ import {
 } from "../../APIs/orders";
 import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../store/slices/Pagination";
+import { useNavigate } from "react-router-dom";
 import "./Orders.css";
 
 export default function AllOrders() {
@@ -14,30 +15,35 @@ export default function AllOrders() {
   const next = useSelector((state) => state.pages.next);
   const previous = useSelector((state) => state.pages.previous);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const ordersData = await getAllOrders();
-        const ordersWithTotalItems = await Promise.all(
-          ordersData.data.results.map(async (order) => ({
-            ...order,
-            totalItems: await fetchTotalItems(order.id),
-          }))
-        );
-        setOrders(ordersWithTotalItems);
-        dispatch(
-          changePage({
-            next: ordersData.data.next,
-            previous: ordersData.data.previous,
-          })
-        );
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      }
-    };
-    fetchData();
-  }, []);
+    if (!localStorage.getItem("Token")) {
+      navigate("/login");
+    } else {
+      const fetchData = async () => {
+        try {
+          const ordersData = await getAllOrders();
+          const ordersWithTotalItems = await Promise.all(
+            ordersData.data.results.map(async (order) => ({
+              ...order,
+              totalItems: await fetchTotalItems(order.id),
+            }))
+          );
+          setOrders(ordersWithTotalItems);
+          dispatch(
+            changePage({
+              next: ordersData.data.next,
+              previous: ordersData.data.previous,
+            })
+          );
+        } catch (error) {
+          console.error("Error fetching orders:", error);
+        }
+      };
+      fetchData();
+    }
+  }, [navigate]);
 
   const fetchTotalItems = async (orderId) => {
     try {
@@ -120,10 +126,7 @@ export default function AllOrders() {
                   Created At: <span>{formatDate(order.created_at)}</span>
                 </li>
               </ul>
-              <Link
-                className="button"
-                to={`/order-details/${order.id}`}
-              >
+              <Link className="button" to={`/order-details/${order.id}`}>
                 Show Items
               </Link>
             </div>

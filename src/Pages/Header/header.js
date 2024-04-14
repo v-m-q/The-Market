@@ -2,13 +2,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-
   // const navigate = useNavigate();
 
   // const redirectToWishList = () => {
   //   navigate("/wishlist");
   // };
-
 
   return (
     <>
@@ -40,8 +38,7 @@ export default function Header() {
           </a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__auth">
-        </div>
+        <div class="offcanvas__auth"></div>
       </div>
 
       <header className="header">
@@ -62,19 +59,13 @@ export default function Header() {
               <nav className="header__menu">
                 <ul>
                   <li class="">
-                    <Link to='/' >
-                      Home
-                    </Link>
+                    <Link to="/">Home</Link>
                   </li>
                   <li class="">
-                    <Link to='/shop' >
-                      Shop
-                    </Link>
+                    <Link to="/shop">Shop</Link>
                   </li>
                   <li class="">
-                    <Link to='/orders' >
-                      Orders
-                    </Link>
+                    <Link to="/orders">Orders</Link>
                   </li>
                 </ul>
               </nav>
@@ -82,15 +73,14 @@ export default function Header() {
             <div class="col-lg-3">
               <div class="header__right">
                 <div class="header__right__auth">
-                  <Link  to="login">Login</Link>
+                  <Link to="login">Login</Link>
                   <Link to="signup">Register</Link>
                 </div>
                 <ul class="header__right__widget">
-
                   <li>
-                    <Link to='/account' >
-                        <span class="icon_profile"></span>
-                    </Link> 
+                    <Link to="/account">
+                      <span class="icon_profile"></span>
+                    </Link>
                   </li>
 
                   <li>
@@ -98,7 +88,7 @@ export default function Header() {
                       <span class="arrow_right_alt"></span>
                     </Link>
                   </li>
-                  
+
                   <li>
                     <Link to="/wishlist">
                       <span class="icon_heart_alt"></span>
@@ -108,10 +98,8 @@ export default function Header() {
                   <li>
                     <Link to="/cart">
                       <span class="icon_bag_alt"></span>
-                      <div class="tip">1</div>
                     </Link>
                   </li>
-
                 </ul>
               </div>
             </div>

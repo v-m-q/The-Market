@@ -46,22 +46,19 @@ export default function Card({ product }) {
             )}
             <ul className="product__hover">
               <li>
-                <a href={`${product.thumbnail}`} className="image-popup">
-                  <span className="arrow_expand">
-                    <FontAwesomeIcon icon={faArrowUpLong} />
+                <a>
+                  <span>
+                    <LikedProduct product={product.id} />
                   </span>
                 </a>
               </li>
               <li>
-                <span className="icon_heart_alt">
-                  <LikedProduct product={product.id} />
-                </span>
-              </li>
-              <li>
-                <FontAwesomeIcon
-                  icon={faShoppingBag}
-                  onClick={(e) => addToCart(e, product.id)}
-                />
+                <a>
+                  <FontAwesomeIcon
+                    icon={faShoppingBag}
+                    onClick={(e) => addToCart(e, product.id)}
+                  />
+                </a>
               </li>
             </ul>
           </div>

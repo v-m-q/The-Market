@@ -2,30 +2,36 @@ import { getCartData } from "../../APIs/cart";
 import { useState, useEffect } from "react";
 import CartItem from "../../Shared/CartItem/CartItem";
 import { stripeCheckout, orderCheckout } from "../../APIs/payment";
+import { useNavigate } from "react-router-dom";
 
 export default function ShoppingCart() {
   const [cartProducts, setCartProducts] = useState([]);
 
   const [totalPrice, setTotalprice] = useState(null);
-  
-  useEffect(() => {
-    getCartData()
-      .then((data) => {
-        setCartProducts(data.data);
-        prepareTotalPrice();
-      })
-      .catch((err) => console.log(err.message));
-    }, [totalPrice]);
-    
-    const prepareTotalPrice = () => {
-      let tp = 0;
-      if (cartProducts !== null) {
-        for (let i = 0; i < cartProducts.length; i++) {
-          tp += cartProducts[i].quantity * cartProducts[i].product.price;
-        }
-        setTotalprice(tp);
-      }
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("Token")) {
+      navigate("/login");
+    } else {
+      getCartData()
+        .then((data) => {
+          setCartProducts(data.data);
+          prepareTotalPrice();
+        })
+        .catch((err) => console.log(err.message));
+    }
+  }, [navigate, totalPrice]);
+
+  const prepareTotalPrice = () => {
+    let tp = 0;
+    if (cartProducts !== null) {
+      for (let i = 0; i < cartProducts.length; i++) {
+        tp += cartProducts[i].quantity * cartProducts[i].product.price;
+      }
+      setTotalprice(tp);
+    }
   };
 
   // const forwardToStripe = (e) => {
@@ -41,7 +47,6 @@ export default function ShoppingCart() {
   //     .catch((err) => alert("error: something wrong happened"));
   // };
 
-     
   const forwardToStripe = (e) => {
     e.preventDefault();
     stripeCheckout(totalPrice)
@@ -51,7 +56,7 @@ export default function ShoppingCart() {
         orderCheckout(totalPrice)
           .then((response) => {
             // Redirect to Stripe checkout page after successful preparation
-            alert('added')
+            alert("added");
           })
           .catch((orderError) => {
             // Handle errors from the orderCheckout endpoint
@@ -64,8 +69,7 @@ export default function ShoppingCart() {
         console.error("Error with Stripe:", stripeError);
         alert("Error with Stripe. Please try again.");
       });
-};
-
+  };
 
   return (
     <>
@@ -125,7 +129,7 @@ export default function ShoppingCart() {
             <div class="col-lg-6 col-md-6 col-sm-6">
               <div class="cart__btn update__btn">
                 {/* <a href="#"> */}
-                  {/* <span class="icon_loading"></span>   */}
+                {/* <span class="icon_loading"></span>   */}
                 {/* </a> */}
               </div>
             </div>
@@ -133,7 +137,7 @@ export default function ShoppingCart() {
           <div class="row">
             <div class="col-lg-6">
               <div class="discount__content">
-                <h6>  </h6>
+                <h6> </h6>
                 <form action="#">
                   {/* <input type="text" placeholder="Enter your coupon code" /> */}
                   {/* <button type="submit" class="site-btn">

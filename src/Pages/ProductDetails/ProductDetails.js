@@ -12,8 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import Stack from "@mui/material/Stack";
 import "./ProductDetails.css";
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 
 const ProductDetails = () => {
   const base_URL = "http://127.0.0.1:8000";
@@ -73,29 +73,42 @@ const ProductDetails = () => {
                     <img src={`${base_URL}/${product.thumbnail}`} alt="" />
                   </a>
                 </div>
-                
+
                 <div class="product__details__slider__content">
-                      <div class="product__details__pic__slider owl-carousel">
-                          <img src={"http://127.0.0.1:8000//media/1500x500.jpg"} />
-                          <img class="product__big__img" src={`${base_URL}/${product.thumbnail}`} alt="" />
-                          <img class="product__big__img" src="img/product/details/product-3.jpg" alt="" />
-                          <img class="product__big__img" src="img/product/details/product-2.jpg" alt="" />
-                          <img class="product__big__img" src="img/product/details/product-4.jpg" alt="" />
-                      </div>
+                  <div class="product__details__pic__slider owl-carousel">
+                    <img src={"http://127.0.0.1:8000//media/1500x500.jpg"} />
+                    <img
+                      class="product__big__img"
+                      src={`${base_URL}/${product.thumbnail}`}
+                      alt=""
+                    />
+                    <img
+                      class="product__big__img"
+                      src={`${base_URL}/${product.thumbnail}`}
+                      alt=""
+                    />
+                    <img
+                      class="product__big__img"
+                      src={`${base_URL}/${product.thumbnail}`}
+                      alt=""
+                    />
+                    <img
+                      class="product__big__img"
+                      src={`${base_URL}/${product.thumbnail}`}
+                      alt=""
+                    />
                   </div>
+                </div>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="product__details__text">
                 <h3>{product.name}</h3>
-                <h5>
-                  Category:{" "}
-                  {product.category && product.category}
-                </h5>
-                <div>
+                <h5>Category: {product.category && product.category}</h5>
+                <span>{product.avg_rate}</span>{" "}
+                <span>
                   <RatingComponent value={product.avg_rate} />
-                </div>
-                <div>{product.avg_rate}</div>
+                </span>
                 <div className="product__details__price">$ {product.price}</div>
                 <p>{product.description}</p>
                 <div className="product__details__button">
@@ -121,16 +134,15 @@ const ProductDetails = () => {
                         )}
                       </span>
                     </li>
-                    <li>
-                    </li>
-                      <Stack spacing={1}>
-                        <Rating
-                          name="half-rating"
-                          precision={0.5}
-                          value={rating}
-                          onChange={handleRating}
-                        />
-                      </Stack>
+                    <li></li>
+                    <Stack spacing={1}>
+                      <Rating
+                        name="half-rating"
+                        precision={0.5}
+                        value={rating}
+                        onChange={handleRating}
+                      />
+                    </Stack>
                   </ul>
                 </div>
               </div>

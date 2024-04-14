@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import axiosInstance from "../../APIs/Axios";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserProfileData } from "../../store/slices/profileSlice";
-import userImg from '../../assets/user.png'
+import userImg from "../../assets/user.png";
 const Profile = () => {
   const user = useSelector((state) => state.profile.userData);
-  const navigator = useNavigate()
+  const navigator = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     getUser();
   }, []);
   const getUser = () => {
+    if (!localStorage.getItem("Token")) {
+      navigator("/login");
+    }
     axiosInstance
-    .get( "/account", {
-      headers: { Authorization: `Bearer ${ localStorage.getItem( "Token" ) }` },
-    } )
-    .then( ( res ) => {
-      dispatch(setUserProfileData(res.data.payload));
-      } )
-      .catch( ( err ) => {
-        navigator( "/login" );
-      } )
+      .get("/account", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
+      })
+      .then((res) => {
+        dispatch(setUserProfileData(res.data.payload));
+      })
+      .catch((err) => {
+        navigator("/login");
+      });
   };
   const logOut = () => {
-    localStorage.removeItem( "Token" ), localStorage.removeItem( "refreshToken" );
-    navigator( '/' );
-  }
+    localStorage.removeItem("Token"), localStorage.removeItem("refreshToken");
+    navigator("/");
+  };
   return (
     <div className="container">
       <div className="main-body">
@@ -65,7 +68,9 @@ const Profile = () => {
                     <p className="text-secondary mb-1">
                       {user ? user[0].email : ""}
                     </p>
-                    <button className="btn btn-primary" onClick={logOut}>logout</button>
+                    <button className="btn btn-primary" onClick={logOut}>
+                      logout
+                    </button>
                   </div>
                 </div>
               </div>
@@ -177,7 +182,7 @@ const Profile = () => {
                     <h6 className="mb-0">Address</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                  { user ? user[0].address : " "}
+                    {user ? user[0].address : " "}
                   </div>
                 </div>
                 <hr />
