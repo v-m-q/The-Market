@@ -2,7 +2,7 @@ import { removeFromCartData, updateCartProductQuantity } from "../../APIs/cart";
 import { useState } from "react";
 
 export default function CartItem({ cartData, chg, data, cart_total, chg_cart_total }) {
-  const base_URL = "http://127.0.0.1:8000";
+  const base_URL = "https://cartify-2.onrender.com";
 
   // console.log("rr" + cartData.product.price*cartData.quantity);
   const [quantity, setQuantity] = useState(cartData.quantity); 
