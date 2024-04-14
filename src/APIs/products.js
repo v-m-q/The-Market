@@ -12,6 +12,10 @@ export const getProductDetails = (id) => {
   return axiosInstance.get(`/products/${id}/`);
 };
 
+export const getProductImages = (p_id) => {
+  return axiosInstance.get(`/images/${p_id}/`);
+};
+
 export const searchForProducts = (categoryId) => {
   return axiosInstance.get("/products/search/", {
     params: {

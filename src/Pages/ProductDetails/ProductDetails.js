@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {
   ProductsByCategories,
   getProductDetails,
+  getProductImages,
   rateProducts,
 } from "../../APIs/products";
 import RatingComponent from "../../Shared/Rating/Rating";
@@ -19,6 +20,7 @@ const ProductDetails = () => {
   const base_URL = "http://127.0.0.1:8000";
   const [productCategory, setproductCategory] = useState([]);
   const [product, setProduct] = useState([]);
+  const [productImages, setProductImages] = useState([]);
   const [rating, setRating] = useState(0);
   const params = useParams();
 
@@ -34,9 +36,6 @@ const ProductDetails = () => {
     getProductDetails(params.id)
       .then((res) => {
         setProduct(res.data);
-
-        console.log(res.data);
-
         ProductsByCategories(res.data.category_id)
           .then((res) => {
             setproductCategory(res.data.results);
@@ -48,6 +47,17 @@ const ProductDetails = () => {
       .catch((err) => console.log(err));
   }, [rating]);
 
+  useEffect(() => {
+    getProductImages(params.id)
+      .then((res) => {
+        setProductImages(res.data);
+        console.log(res.data);
+        console.log(res.data[0].image);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+
   if (!product) {
     return null;
   }
@@ -57,48 +67,100 @@ const ProductDetails = () => {
       <section className="product-details spad">
         <div className="container">
           <div className="row">
-            <div className="col-lg-6">
-              <div className="product__details__pic">
-                <div className="product__details__pic__left product__thumb nice-scroll">
-                  <a className="pt active" href="#product-1">
-                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
-                  </a>
-                  <a className="pt" href="#product-2">
-                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
-                  </a>
-                  <a className="pt" href="#product-3">
-                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
-                  </a>
-                  <a className="pt" href="#product-4">
-                    <img src={`${base_URL}/${product.thumbnail}`} alt="" />
-                  </a>
-                </div>
-
-                <div class="product__details__slider__content">
-                  <div class="product__details__pic__slider owl-carousel">
-                    <img src={"http://127.0.0.1:8000//media/1500x500.jpg"} />
+            <div class="col-xl-5 col-lg-5 col-md-6">
+              <div
+                id="carousel-example-1"
+                class="single-product-slider carousel slide"
+                data-ride="carousel"
+              >
+                <div class="carousel-inner" role="listbox">
+                  <div class="carousel-item active">
+                    {" "}
                     <img
-                      class="product__big__img"
+                      class="d-block w-100"
                       src={`${base_URL}/${product.thumbnail}`}
-                      alt=""
-                    />
-                    <img
-                      class="product__big__img"
-                      src={`${base_URL}/${product.thumbnail}`}
-                      alt=""
-                    />
-                    <img
-                      class="product__big__img"
-                      src={`${base_URL}/${product.thumbnail}`}
-                      alt=""
-                    />
-                    <img
-                      class="product__big__img"
-                      src={`${base_URL}/${product.thumbnail}`}
-                      alt=""
-                    />
+                      alt="First slide"
+                    />{" "}
+                  </div>
+                  <div class="carousel-item">
+                    {" "}
+                    {productImages.length > 0 ? (
+                     <img
+                     class="d-block w-100 img-fluid"
+                     src={`${base_URL}/${productImages[0].image}`}
+                     alt=""
+                   />
+                    ) : (
+                      <div>Loading...</div>
+                    )}{" "}
+                  </div>
+                  <div class="carousel-item">
+                    {" "}
+                    {productImages.length > 0 ? (
+                     <img
+                     class="d-block w-100 img-fluid"
+                     src={`${base_URL}/${productImages[1].image}`}
+                     alt=""
+                   />
+                    ) : (
+                      <div>Loading...</div>
+                    )}{" "}
                   </div>
                 </div>
+                <a
+                  class="carousel-control-prev"
+                  href="#carousel-example-1"
+                  role="button"
+                  data-slide="prev"
+                >
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a
+                  class="carousel-control-next"
+                  href="#carousel-example-1"
+                  role="button"
+                  data-slide="next"
+                >
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+                <ol class="carousel-indicators">
+                  <li
+                    data-target="#carousel-example-1"
+                    data-slide-to="0"
+                    class="active"
+                  >
+                    <img
+                      class="d-block w-100 img-fluid"
+                      src={`${base_URL}/${product.thumbnail}`}
+                      alt=""
+                    />
+                  </li>
+                  <li data-target="#carousel-example-1" data-slide-to="1">
+                  {productImages.length > 0 ? (
+                     <img
+                     class="d-block w-100 img-fluid"
+                     src={`${base_URL}/${productImages[0].image}`}
+                     alt=""
+                   />
+                    ) : (
+                      <div>Loading...</div>
+                    )}
+                    
+                  </li>
+                  <li data-target="#carousel-example-1" data-slide-to="2">
+                  {productImages.length > 0 ? (
+                     <img
+                     class="d-block w-100 img-fluid"
+                     src={`${base_URL}/${productImages[1].image}`}
+                     alt=""
+                   />
+                    ) : (
+                      <div>Loading...</div>
+                    )}
+                  </li>
+                </ol>
               </div>
             </div>
             <div className="col-lg-6">
