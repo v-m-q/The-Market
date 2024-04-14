@@ -21,13 +21,14 @@ export default function ProductsList({ product }) {
   useEffect(() => {
     getProducts()
       .then((data) => {
-        setProducts(data.data);
-        console.log(data.data);
+        setProducts(data.data.latest_products);
+        console.log(data.data.latest_products);
       })
       .catch((err) => console.log(err.message));
   }, []);
 
-  const handleCategoryFilter = (categoryId) => {
+  const handleCategoryFilter = ( categoryId ) => {
+    console.log( categoryId );
     ProductsByCategories(categoryId)
       .then((response) => {
         setProducts(response.data.results);
@@ -66,7 +67,7 @@ export default function ProductsList({ product }) {
             </div>
           </div>
           <div className="row property__gallery">
-            {products.latest_products?.map((product) => (
+            {products?.map((product) => (
               <Card product={product}></Card>
             ))}
           </div>

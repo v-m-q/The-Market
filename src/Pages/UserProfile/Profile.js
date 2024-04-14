@@ -9,7 +9,7 @@ const Profile = () => {
   const user = useSelector((state) => state.profile.userData);
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
+  useEffect( () => {
     getUser();
   }, []);
   const getUser = () => {
