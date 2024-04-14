@@ -167,6 +167,7 @@ const ProductDetails = () => {
               <div className="product__details__text">
                 <h3>{product.name}</h3>
                 <h5>Category: {product.category && product.category}</h5>
+                <span>Avg Rate: </span>
                 <span>{product.avg_rate}</span>{" "}
                 <span>
                   <RatingComponent value={product.avg_rate} />

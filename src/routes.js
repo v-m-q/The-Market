@@ -14,6 +14,7 @@ import AllProducts from "./Pages/Shop/Shop";
 import AllOrders from "./Pages/orders/Orders";
 import OrderItems from "./Pages/OrderItems/OrderItems";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import NotFound from "./Pages/NotFound/NotFound";
 
 const Layout = () => {
   return (
@@ -74,7 +75,11 @@ const router = createBrowserRouter([
       {
       path: "/order-details/:id",
       element: <OrderItems/>,
-    },
+      },
+      {
+        path: '*',
+        element:<NotFound/>
+      }
      
     ],
   },
