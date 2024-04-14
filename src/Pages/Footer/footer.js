@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
@@ -7,30 +8,30 @@ const Footer = () => {
             <div className="col-lg-4 col-md-6 col-sm-7">
               <div className="footer__about">
                 <div className="footer__logo">
-                  <a href="./index.html">
+                  <Link to="./index.html">
                     <img src="img/logo.png" alt="" />
-                  </a>
+                  </Link>
                 </div>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt cilisis.
                 </p>
                 <div className="footer__payment">
-                  <a href="#">
+                  <Link to="#">
                     <img src="img/payment/payment-1.png" alt="" />
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <img src="img/payment/payment-2.png" alt="" />
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <img src="img/payment/payment-3.png" alt="" />
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <img src="img/payment/payment-4.png" alt="" />
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <img src="img/payment/payment-5.png" alt="" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -39,16 +40,16 @@ const Footer = () => {
                 <h6>Quick links</h6>
                 <ul>
                   <li>
-                    <a href="#">About</a>
+                    <Link to="#">About</Link>
                   </li>
                   <li>
-                    <a href="#">Blogs</a>
+                    <Link to="#">Blogs</Link>
                   </li>
                   <li>
-                    <a href="#">Contact</a>
+                    <Link to="#">Contact</Link>
                   </li>
                   <li>
-                    <a href="#">FAQ</a>
+                    <Link to="#">FAQ</Link>
                   </li>
                 </ul>
               </div>
@@ -58,16 +59,16 @@ const Footer = () => {
                 <h6>Account</h6>
                 <ul>
                   <li>
-                    <a href="#">My Account</a>
+                    <Link to="#">My Account</Link>
                   </li>
                   <li>
-                    <a href="#">Orders Tracking</a>
+                    <Link to="#">Orders Tracking</Link>
                   </li>
                   <li>
-                    <a href="#">Checkout</a>
+                    <Link to="#">Checkout</Link>
                   </li>
                   <li>
-                    <a href="#">Wishlist</a>
+                    <Link to="#">Wishlist</Link>
                   </li>
                 </ul>
               </div>
@@ -82,21 +83,21 @@ const Footer = () => {
                   </button>
                 </form>
                 <div className="footer__social">
-                  <a href="#">
+                  <Link to="#">
                     <i className="fa fa-facebook"></i>
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <i className="fa fa-twitter"></i>
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <i className="fa fa-youtube-play"></i>
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <i className="fa fa-instagram"></i>
-                  </a>
-                  <a href="#">
+                  </Link>
+                  <Link to="#">
                     <i className="fa fa-pinterest"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

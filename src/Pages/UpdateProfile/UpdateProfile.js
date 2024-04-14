@@ -72,7 +72,7 @@ const UpdateProfile = () => {
                 </div>
                 <hr className="my-4" />
                 <ul className="list-group list-group-flush">
-                  <Link style={{ textDecoration: "none" }}>
+                  <Link style={{ textDecoration: "none" }} to="/cart">
                     <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                       <h6 className="mb-0">
                         <svg
@@ -95,7 +95,7 @@ const UpdateProfile = () => {
                       </h6>
                     </li>
                   </Link>
-                  <Link style={{ textDecoration: "none" }}>
+                  <Link style={{ textDecoration: "none" }} to="/wishlist">
                     <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                       <h6 className="mb-0">
                         <svg
@@ -116,7 +116,7 @@ const UpdateProfile = () => {
                       </h6>
                     </li>
                   </Link>
-                  <Link style={{ textDecoration: "none" }}>
+                  <Link style={{ textDecoration: "none" }} to="/orders">
                     <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                       <h6 className="mb-0">
                         <svg

@@ -17,14 +17,16 @@ export default function ProductsList({ product }) {
         console.log("Error fetching categories:", err);
       });
   }, []);
-
-  useEffect(() => {
+  const getAllProducts = () => {
     getProducts()
       .then((data) => {
         setProducts(data.data.latest_products);
         console.log(data.data.latest_products);
       })
       .catch((err) => console.log(err.message));
+}
+  useEffect( () => {
+    getAllProducts()
   }, []);
 
   const handleCategoryFilter = ( categoryId ) => {
@@ -50,7 +52,7 @@ export default function ProductsList({ product }) {
             </div>
             <div className="col-lg-8 col-md-8">
               <ul className="filter__controls">
-                <li className="active" data-filter="*">
+                <li className="active" data-filter="*" onClick={getAllProducts}>
                   All
                 </li>
                 {categories.slice(0, 6).map((category) => (

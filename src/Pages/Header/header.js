@@ -1,12 +1,17 @@
+import { Button } from "bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  // const navigate = useNavigate();
+  const navigator = useNavigate();
 
   // const redirectToWishList = () => {
   //   navigate("/wishlist");
   // };
+  const logOut = () => {
+    localStorage.removeItem("Token"), localStorage.removeItem("refreshToken");
+    navigator("/");
+  };
 
   return (
     <>
@@ -46,13 +51,13 @@ export default function Header() {
           <div className="row">
             <div className="col-xl-3 col-lg-2">
               <div className="header__logo">
-                <a href="./index.html">
+                <Link to="/">
                   <img
                     src="img/logoo.png"
                     style={{ width: "50px", height: "50px" }}
                     alt=""
                   />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-xl-6 col-lg-7">
@@ -84,9 +89,9 @@ export default function Header() {
                   </li>
 
                   <li>
-                    <Link to="/logout">
+                    <button onClick={logOut}>
                       <span class="arrow_right_alt"></span>
-                    </Link>
+                    </button>
                   </li>
 
                   <li>

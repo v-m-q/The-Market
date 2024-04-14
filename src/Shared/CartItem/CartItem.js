@@ -42,7 +42,7 @@ export default function CartItem({ cartData, chg, data, cart_total, chg_cart_tot
       <tr>
         <td className="cart__product__item">
           <img 
-          src={`${base_URL}/${cartData.product.thumbnail}`} 
+          src={`${base_URL}/static/${cartData.product.thumbnail}`} 
           width={'140px'} 
           style={{'border-radius': '15px' }}
           alt="" />
