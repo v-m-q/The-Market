@@ -93,7 +93,7 @@ const ProductDetails = () => {
                   </div>
                   <div class="carousel-item">
                     {" "}
-                    {productImages.length > 1 && productImages[0] && productImages[0].image ? (
+                    {productImages.length > 0 && productImages[0] && productImages[0].image ? (
                      <img
                      class="d-block w-100 img-fluid"
                      src={`${productImages[0].image.split('/media/').pop().split('%3A').join(':')}`}
@@ -105,7 +105,7 @@ const ProductDetails = () => {
                   </div>
                   <div class="carousel-item">
                     {" "}
-                    {productImages.length > 1 && productImages[1] && productImages[1].image ? (
+                    {productImages.length > 0 && productImages[1] && productImages[1].image ? (
                      <img
                      class="d-block w-100 img-fluid"
                      src={`${productImages[1].image.split('/media/').pop().split('%3A').join(':')}`}
@@ -151,7 +151,7 @@ const ProductDetails = () => {
                     )}
                   </li>
                   <li data-target="#carousel-example-1" data-slide-to="1">
-                    {productImages.length > 1 && productImages[0] && productImages[0].image ? (
+                    {productImages.length > 0 && productImages[0] && productImages[0].image ? (
                      <img
                      class="d-block w-100 img-fluid"
                      src={`${productImages[0].image.split('/media/').pop().split('%3A').join(':')}`}
@@ -163,7 +163,7 @@ const ProductDetails = () => {
                     
                   </li>
                   <li data-target="#carousel-example-1" data-slide-to="2">
-                  {productImages.length > 1 && productImages[1] && productImages[1].image ? (
+                  {productImages.length > 0 && productImages[1] && productImages[1].image ? (
                      <img
                      class="d-block w-100 img-fluid"
                      src={`${productImages[1].image.split('/media/').pop().split('%3A').join(':')}`}

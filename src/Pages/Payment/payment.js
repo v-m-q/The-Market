@@ -7,7 +7,7 @@ export default function Payment() {
   useEffect(() => {
     async function createMarkup() {
       let response;
-      response = await fetch(`http://127.0.0.1:8000/pay/product_page`)
+      response = await fetch(`https://cartify-2.onrender.compay/product_page`)
        const backendHtmlString = await response.text()
 
        console.log(backendHtmlString)
