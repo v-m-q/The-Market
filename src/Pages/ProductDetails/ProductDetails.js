@@ -51,8 +51,6 @@ const ProductDetails = () => {
     getProductImages(params.id)
       .then((res) => {
         setProductImages(res.data);
-        console.log(res.data);
-        console.log(res.data[0].image);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -78,16 +76,27 @@ const ProductDetails = () => {
                     {" "}
                     <img
                       class="d-block w-100"
-                      src={`${base_URL}/${product.thumbnail}`}
                       alt="First slide"
-                    />{" "}
+                      />{" "}
+
+                  {product.thumbnail ? (
+                    <img
+                    class="d-block w-100 img-fluid"
+                    src={`${product.thumbnail.split('/media/').pop().split('%3A').join(':')}`}
+                     alt=""
+                   />
+                    ) : (
+                      <div>Loading...</div>
+                    )}
+
+
                   </div>
                   <div class="carousel-item">
                     {" "}
-                    {productImages.length > 0 ? (
+                    {productImages.length > 1 && productImages[0] && productImages[0].image ? (
                      <img
                      class="d-block w-100 img-fluid"
-                     src={`${base_URL}/${productImages[0].image}`}
+                     src={`${productImages[0].image.split('/media/').pop().split('%3A').join(':')}`}
                      alt=""
                    />
                     ) : (
@@ -96,10 +105,10 @@ const ProductDetails = () => {
                   </div>
                   <div class="carousel-item">
                     {" "}
-                    {productImages.length > 0 ? (
+                    {productImages.length > 1 && productImages[1] && productImages[1].image ? (
                      <img
                      class="d-block w-100 img-fluid"
-                     src={`${base_URL}/${productImages[1].image}`}
+                     src={`${productImages[1].image.split('/media/').pop().split('%3A').join(':')}`}
                      alt=""
                    />
                     ) : (
@@ -131,17 +140,21 @@ const ProductDetails = () => {
                     data-slide-to="0"
                     class="active"
                   >
+                    {product.thumbnail ? (
                     <img
-                      class="d-block w-100 img-fluid"
-                      src={`${base_URL}/${product.thumbnail}`}
-                      alt=""
-                    />
+                    class="d-block w-100 img-fluid"
+                    src={`${product.thumbnail.split('/media/').pop().split('%3A').join(':')}`}
+                     alt=""
+                   />
+                    ) : (
+                      <div>Loading...</div>
+                    )}
                   </li>
                   <li data-target="#carousel-example-1" data-slide-to="1">
-                  {productImages.length > 0 ? (
+                    {productImages.length > 1 && productImages[0] && productImages[0].image ? (
                      <img
                      class="d-block w-100 img-fluid"
-                     src={`${base_URL}/${productImages[0].image}`}
+                     src={`${productImages[0].image.split('/media/').pop().split('%3A').join(':')}`}
                      alt=""
                    />
                     ) : (
@@ -150,15 +163,15 @@ const ProductDetails = () => {
                     
                   </li>
                   <li data-target="#carousel-example-1" data-slide-to="2">
-                  {productImages.length > 0 ? (
+                  {/* {productImages.length > 1 && productImages[1] && productImages[1].image ? (
                      <img
                      class="d-block w-100 img-fluid"
-                     src={`${base_URL}/${productImages[1].image}`}
+                     src={`${productImages[1].image.split('/media/').pop().split('%3A').join(':')}`}
                      alt=""
                    />
                     ) : (
                       <div>Loading...</div>
-                    )}
+                    )} */}
                   </li>
                 </ol>
               </div>

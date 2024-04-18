@@ -21,6 +21,7 @@ export default function ProductsList({ product }) {
     getProducts()
       .then((data) => {
         setProducts(data.data.latest_products);
+        console.log(data);
         console.log(data.data.latest_products);
       })
       .catch((err) => console.log(err.message));

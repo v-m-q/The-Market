@@ -8,7 +8,7 @@ import "./Card.css";
 import LikedProduct from "../LikedProduct/LikedProduct";
 
 export default function Card({ product }) {
-  const base_URL = "https://cartify-2.onrender.com";
+  const base_URL = "http://127.0.0.1:8000/";
 
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ export default function Card({ product }) {
           <div
             className="product__item__pic set-bg"
             style={{
-              "background-image": `url(${base_URL}/static/${product.thumbnail})`,
+              "background-image": `url(${product.thumbnail.split('/media/').pop().split('%3A').join(':')})`,
             }}
           >
             {product.quantity === 0 ? (
