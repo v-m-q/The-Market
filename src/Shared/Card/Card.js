@@ -40,7 +40,7 @@ export default function Card({ product }) {
           <div
             className="product__item__pic set-bg"
             style={{
-              "background-image": `url(${product.thumbnail.split('/media/').pop().split('%3A').join(':')})`,
+              "background-image": `url(${product.thumbnail.split('/media/').pop().split('%3A').join(':').replace(":/", "://")})`,
             }}
           >
             {product.quantity === 0 ? (
